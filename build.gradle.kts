@@ -6,8 +6,8 @@ plugins {
     alias(libs.plugins.publishdata)
 }
 
-group = "net.theevilreaper.kali"
-version = "1.0-SNAPSHOT"
+group = "net.theevilreaper.coris"
+version = "0.0.1"
 
 dependencies {
     implementation(platform(libs.microtus.bom))
