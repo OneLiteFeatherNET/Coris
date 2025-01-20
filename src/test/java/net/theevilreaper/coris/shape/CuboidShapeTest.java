@@ -2,6 +2,7 @@ package net.theevilreaper.coris.shape;
 
 import net.minestom.server.coordinate.Pos;
 import net.minestom.server.coordinate.Vec;
+import net.theevilreaper.coris.util.DefaultPositionCalculator;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -15,14 +16,14 @@ class CuboidShapeTest {
     void testInvalidCuboidCreation() {
         assertThrowsExactly(
                 IllegalArgumentException.class,
-                () -> new CuboidShape<>(Pos.ZERO, Pos.ZERO),
+                () -> new CuboidShape<>(Pos.ZERO, Pos.ZERO, DefaultPositionCalculator::calculatePositions),
                 "The cuboid shape should not be created with the same position"
         );
     }
 
     @Test
     void testSuccessfullyTwoDIntersect() {
-        Shape<Vec> cuboidShape = new CuboidShape<>(Vec.ZERO, new Vec(10, 10, 10));
+        Shape<Vec> cuboidShape = new CuboidShape<>(Vec.ZERO, new Vec(10, 10, 10), DefaultPositionCalculator::calculatePositions);
         assertInstanceOf(Shape.class, cuboidShape);
         assertInstanceOf(CuboidShape.class, cuboidShape);
 
@@ -39,7 +40,7 @@ class CuboidShapeTest {
 
     @Test
     void testInvalidTwoDIntersect() {
-        Shape<Vec> cuboidShape = new CuboidShape<>(Vec.ZERO, new Vec(10, 10, 10));
+        Shape<Vec> cuboidShape = new CuboidShape<>(Vec.ZERO, new Vec(10, 10, 10), DefaultPositionCalculator::calculatePositions);
         assertInstanceOf(Shape.class, cuboidShape);
         assertInstanceOf(CuboidShape.class, cuboidShape);
 

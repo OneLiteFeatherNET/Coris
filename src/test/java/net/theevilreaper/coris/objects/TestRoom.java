@@ -5,6 +5,7 @@ import net.minestom.server.coordinate.Vec;
 import net.theevilreaper.coris.room.BaseRoom;
 import net.theevilreaper.coris.shape.CuboidShape;
 import net.theevilreaper.coris.shape.Shape;
+import net.theevilreaper.coris.util.DefaultPositionCalculator;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -17,7 +18,7 @@ import org.jetbrains.annotations.NotNull;
  */
 public final class TestRoom extends BaseRoom {
 
-    public static final Shape<Vec> VEC_SHAPE = new CuboidShape<>(Vec.ZERO, new Vec(10, 10, 10));
+    public static final Shape<Vec> VEC_SHAPE = new CuboidShape<>(Vec.ZERO, new Vec(10, 10, 10), DefaultPositionCalculator::calculatePositions);
 
     public TestRoom(@NotNull Key identifier) {
         super(identifier, VEC_SHAPE);
