@@ -51,7 +51,7 @@ dependencyResolutionManagement {
         create("libs") {
             version("publishdata", "1.4.0")
             version("minestom", "1.5.1")
-            version("jetbrains.annotations", "26.0.1")
+            version("jetbrains.annotations", "26.0.2")
             version("junit", "5.11.4")
             version("phoca", "0.5.2")
 
