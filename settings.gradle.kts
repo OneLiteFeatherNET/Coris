@@ -32,7 +32,7 @@ dependencyResolutionManagement {
             version("publishdata", "1.4.0")
             version("minestom", "1.5.1")
             version("jetbrains.annotations", "26.0.2")
-            version("junit", "5.11.4")
+            version("junit", "5.12.1")
             version("phoca", "0.5.3")
 
             library("microtus-bom", "net.onelitefeather.microtus", "bom").versionRef("minestom")
