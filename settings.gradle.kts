@@ -31,7 +31,6 @@ dependencyResolutionManagement {
         create("libs") {
             version("publishdata", "1.4.0")
             version("minestom", "1.5.1")
-            version("jetbrains.annotations", "26.0.2")
             version("junit", "5.12.1")
             version("phoca", "0.5.3")
 
@@ -40,7 +39,6 @@ dependencyResolutionManagement {
             library("minestom-test", "net.onelitefeather.microtus.testing", "testing").withoutVersion()
 
             library("phoca", "net.onelitefeather.phoca", "phoca").versionRef("phoca")
-            library("jetbrains.annotations", "org.jetbrains", "annotations").versionRef("jetbrains.annotations")
             library("junit.api", "org.junit.jupiter", "junit-jupiter-api").versionRef("junit")
             library("junit.engine", "org.junit.jupiter", "junit-jupiter-engine").versionRef("junit")
 
