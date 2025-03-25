@@ -26,7 +26,7 @@ When reporting an issue, please include the following information:
 ## Pull Requests
 
 If you want to contribute to the project by adding new features, fixing bugs, or improving the codebase, you can do it
-by following these things
+by following these steps:
 
 - Create a fork of the project
 - Create a new branch for your changes
