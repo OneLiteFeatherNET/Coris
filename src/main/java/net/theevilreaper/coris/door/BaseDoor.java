@@ -25,7 +25,7 @@ public abstract non-sealed class BaseDoor implements Door {
      * @param face the face of the door
      * @param shape the shape from the door
      */
-    BaseDoor(@NotNull UUID uuid, @NotNull Key key, @NotNull DoorFace face,  @NotNull Shape<? extends Point> shape) {
+    protected BaseDoor(@NotNull UUID uuid, @NotNull Key key, @NotNull DoorFace face,  @NotNull Shape<? extends Point> shape) {
         this.uuid = uuid;
         this.key = key;
         this.face = face;
@@ -39,7 +39,7 @@ public abstract non-sealed class BaseDoor implements Door {
      * @param face the face of the door
      * @param shape the shape from the door
      */
-    BaseDoor(@NotNull Key key, @NotNull DoorFace face,  @NotNull Shape<? extends Point> shape) {
+    protected BaseDoor(@NotNull Key key, @NotNull DoorFace face,  @NotNull Shape<? extends Point> shape) {
         this(UUID.randomUUID(), key, face, shape);
     }
 
