@@ -1,4 +1,4 @@
-package net.theevilreaper.coris.room.door;
+package net.theevilreaper.coris.door;
 
 import net.minestom.server.utils.Direction;
 import org.jetbrains.annotations.NotNull;
