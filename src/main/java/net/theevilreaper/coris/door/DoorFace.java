@@ -14,12 +14,11 @@ import java.util.Optional;
  */
 public enum DoorFace {
 
-    NORTH(0, Direction.NORTH, "north", "up"),
-    EAST(1, Direction.EAST, "east", "right"),
-    SOUTH(2, Direction.SOUTH, "south", "down"),
-    WEST(3, Direction.WEST, "west", "left");
+    NORTH( Direction.NORTH, "north", "up"),
+    EAST(Direction.EAST, "east", "right"),
+    SOUTH( Direction.SOUTH, "south", "down"),
+    WEST(Direction.WEST, "west", "left");
 
-    private final int id;
     private final Direction direction;
     private final String name;
     private final String alias;
@@ -29,25 +28,14 @@ public enum DoorFace {
     /**
      * Creates a reference from a DoorFace.
      *
-     * @param id        the id for the door
      * @param direction the direction for the door
      * @param name      the name for the door
      * @param alias     the alias for the door
      */
-    DoorFace(int id, @NotNull Direction direction, @NotNull String name, @NotNull String alias) {
-        this.id = id;
+    DoorFace(@NotNull Direction direction, @NotNull String name, @NotNull String alias) {
         this.direction = direction;
         this.name = name;
         this.alias = alias;
-    }
-
-    /**
-     * Returns the id from the door.
-     *
-     * @return the given id
-     */
-    public int getId() {
-        return id;
     }
 
     /**
@@ -55,7 +43,7 @@ public enum DoorFace {
      *
      * @return the give direction
      */
-    public @NotNull Direction getDirection() {
+    public @NotNull Direction direction() {
         return direction;
     }
 
