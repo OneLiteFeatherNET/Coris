@@ -22,7 +22,7 @@ dependencyResolutionManagement {
     versionCatalogs {
         create("libs") {
             version("minestom", "1.5.1")
-            version("junit", "5.12.1")
+            version("junit", "5.12.2")
             version("phoca", "0.5.3")
 
             library("microtus-bom", "net.onelitefeather.microtus", "bom").versionRef("minestom")
