@@ -5,7 +5,7 @@ plugins {
     `maven-publish`
 }
 
-group = "net.theevilreaper.coris"
+group = "net.onelitefeather"
 version = "0.0.1"
 
 dependencies {
