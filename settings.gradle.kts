@@ -21,8 +21,6 @@ dependencyResolutionManagement {
     }
     versionCatalogs {
         create("libs") {
-            version("minestom", "1.5.1")
-            version("junit", "5.12.2")
             version("phoca", "0.5.3")
             version("bom", "1.2.3")
 
