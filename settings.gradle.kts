@@ -29,7 +29,6 @@ dependencyResolutionManagement {
 
             library("minestom", "net.minestom", "minestom-snapshots").withoutVersion()
             library("cyano", "net.onelitefeather", "cyano").withoutVersion()
-            library("adventure.minimessage", "net.kyori", "adventure-text-minimessage").withoutVersion()
             library("junit.api", "org.junit.jupiter", "junit-jupiter-api").withoutVersion()
             library("junit.engine", "org.junit.jupiter", "junit-jupiter-engine").withoutVersion()
             library("junit.params", "org.junit.jupiter", "junit-jupiter-params").withoutVersion()
