@@ -3,9 +3,9 @@ package net.onelitefeather.coris.door;
 import net.kyori.adventure.key.Key;
 import net.minestom.server.coordinate.Point;
 import net.minestom.server.coordinate.Vec;
+import net.onelitefeather.coris.PositionBase;
 import net.onelitefeather.coris.shape.CuboidShape;
 import net.onelitefeather.coris.shape.Shape;
-import net.onelitefeather.coris.util.DefaultPositionCalculator;
 import net.onelitefeather.coris.util.TestDoor;
 import org.junit.jupiter.api.Test;
 
@@ -18,7 +18,7 @@ class BaseDoorTest {
     @Test
     void testDoorCreation() {
         Key key = Key.key("door:test");
-        Door door = new TestDoor(key, DoorFace.NORTH, new CuboidShape<Point>(Vec.ZERO, new Vec(1, 1, 1), DefaultPositionCalculator::calculatePositions));
+        Door door = new TestDoor(key, DoorFace.NORTH, new CuboidShape<Point>(Vec.ZERO, new Vec(1, 1, 1), PositionBase::getEmptyList));
         assertNotNull(door);
         assertEquals(DoorFace.NORTH, door.face());
         assertNotEquals(UUID.randomUUID(), door.id());

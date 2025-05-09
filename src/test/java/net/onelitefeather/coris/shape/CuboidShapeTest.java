@@ -1,8 +1,9 @@
 package net.onelitefeather.coris.shape;
 
+import net.minestom.server.coordinate.Point;
 import net.minestom.server.coordinate.Pos;
 import net.minestom.server.coordinate.Vec;
-import net.onelitefeather.coris.util.DefaultPositionCalculator;
+import net.onelitefeather.coris.PositionBase;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -16,14 +17,14 @@ class CuboidShapeTest {
     void testInvalidCuboidCreation() {
         assertThrowsExactly(
                 IllegalArgumentException.class,
-                () -> new CuboidShape<>(Pos.ZERO, Pos.ZERO, DefaultPositionCalculator::calculatePositions),
+                () -> new CuboidShape<>(Pos.ZERO, Pos.ZERO, PositionBase::getEmptyList),
                 "The cuboid shape should not be created with the same position"
         );
     }
 
     @Test
     void testSuccessfullyTwoDIntersect() {
-        Shape<Vec> cuboidShape = new CuboidShape<>(Vec.ZERO, new Vec(10, 10, 10), DefaultPositionCalculator::calculatePositions);
+        Shape<Point> cuboidShape = new CuboidShape<>(Vec.ZERO, new Vec(10, 10, 10), PositionBase::getEmptyList);
         assertInstanceOf(Shape.class, cuboidShape);
         assertInstanceOf(CuboidShape.class, cuboidShape);
 
@@ -40,7 +41,7 @@ class CuboidShapeTest {
 
     @Test
     void testInvalidTwoDIntersect() {
-        Shape<Vec> cuboidShape = new CuboidShape<>(Vec.ZERO, new Vec(10, 10, 10), DefaultPositionCalculator::calculatePositions);
+        Shape<Point> cuboidShape = new CuboidShape<>(Vec.ZERO, new Vec(10, 10, 10), PositionBase::getEmptyList);
         assertInstanceOf(Shape.class, cuboidShape);
         assertInstanceOf(CuboidShape.class, cuboidShape);
 

@@ -6,10 +6,10 @@ import net.minestom.server.coordinate.Pos;
 import net.minestom.server.instance.Instance;
 import net.minestom.testing.Env;
 import net.minestom.testing.extension.MicrotusExtension;
+import net.onelitefeather.coris.PositionBase;
 import net.onelitefeather.coris.door.Door;
 import net.onelitefeather.coris.door.DoorFace;
 import net.onelitefeather.coris.shape.CuboidShape;
-import net.onelitefeather.coris.util.DefaultPositionCalculator;
 import net.onelitefeather.coris.util.TestDoor;
 import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.Test;
@@ -24,7 +24,7 @@ class DoorOpenEventIntegrationTest {
     void testEventConstruction(@NotNull Env env) {
         Instance instance = env.createFlatInstance();
         Key key = Key.key("door:test");
-        Door door = new TestDoor(key, DoorFace.EAST, new CuboidShape<Point>(Pos.ZERO, new Pos(1, 1, 1), DefaultPositionCalculator::calculatePositions));
+        Door door = new TestDoor(key, DoorFace.EAST, new CuboidShape<Point>(Pos.ZERO, new Pos(1, 1, 1), PositionBase::getEmptyList));
         assertNotNull(door);
 
         DoorOpenEvent event = new DoorOpenEvent(door, instance);

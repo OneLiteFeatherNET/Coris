@@ -1,11 +1,12 @@
 package net.onelitefeather.coris.objects;
 
 import net.kyori.adventure.key.Key;
+import net.minestom.server.coordinate.Point;
 import net.minestom.server.coordinate.Vec;
+import net.onelitefeather.coris.PositionBase;
 import net.onelitefeather.coris.room.BaseRoom;
 import net.onelitefeather.coris.shape.CuboidShape;
 import net.onelitefeather.coris.shape.Shape;
-import net.onelitefeather.coris.util.DefaultPositionCalculator;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -18,7 +19,7 @@ import org.jetbrains.annotations.NotNull;
  */
 public final class TestRoom extends BaseRoom {
 
-    public static final Shape<Vec> VEC_SHAPE = new CuboidShape<>(Vec.ZERO, new Vec(10, 10, 10), DefaultPositionCalculator::calculatePositions);
+    public static final Shape<Point> VEC_SHAPE = new CuboidShape<>(Vec.ZERO, new Vec(10, 10, 10), PositionBase::getEmptyList);
 
     public TestRoom(@NotNull Key identifier) {
         super(identifier, VEC_SHAPE);
