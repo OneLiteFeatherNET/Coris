@@ -2,10 +2,12 @@ package net.onelitefeather.coris.shape;
 
 import net.minestom.server.coordinate.Point;
 import net.minestom.server.utils.validate.Check;
+import net.onelitefeather.coris.util.DefaultPositionCalculator;
 import net.onelitefeather.coris.util.PositionsCalculator;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.List;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
@@ -16,13 +18,18 @@ import java.util.concurrent.CompletableFuture;
 @ApiStatus.Experimental
 public class CuboidShape<T extends Point> extends BaseShape<T> {
 
-    private final PositionsCalculator<T> positionsCalculator;
+    public CuboidShape(@NotNull T start, @NotNull T end) {
+        super(start, end, DefaultPositionCalculator::getCuboidPoints);
+        this.distanceCheck();
+    }
 
-    public CuboidShape(@NotNull T start, @NotNull T end, @NotNull PositionsCalculator<T> positionsCalculator) {
-        super(start, end);
-        this.positionsCalculator = positionsCalculator;
+    public CuboidShape(@NotNull T start, @NotNull T end, @NotNull PositionsCalculator<T> calculator) {
+        super(start, end, calculator);
+        this.distanceCheck();
+    }
+
+    private void distanceCheck() {
         double distance = start.distanceSquared(end);
-
         if (distance <= 0) {
             throw new IllegalArgumentException("The distance between the start and end point must be greater than 0");
         }
@@ -31,15 +38,12 @@ public class CuboidShape<T extends Point> extends BaseShape<T> {
     @Override
     public void calculatePositions() {
         Check.argCondition(this.positions.isEmpty(), "The positions are already calculated");
-        this.positions.addAll(this.positionsCalculator.calculatePositions(start, end));
+        this.positions.addAll(calculator.calculatePositions(List.of(start, end)));
     }
 
     @Override
-    public @NotNull CompletableFuture<Set<T>> calculatePositionsAsync() {
-        return CompletableFuture.supplyAsync(() -> {
-            calculatePositions();
-            return this.positions;
-        });
+    public @NotNull CompletableFuture<Void> calculatePositionsAsync() {
+        return CompletableFuture.runAsync(this::calculatePositions);
     }
 
     @Override

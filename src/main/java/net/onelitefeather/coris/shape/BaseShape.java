@@ -1,6 +1,7 @@
 package net.onelitefeather.coris.shape;
 
 import net.minestom.server.coordinate.Point;
+import net.onelitefeather.coris.util.PositionsCalculator;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.UnmodifiableView;
 
@@ -22,6 +23,7 @@ public abstract class BaseShape<T extends Point> implements Shape<T> {
     protected final T start;
     protected final T end;
     protected final Set<T> positions;
+    protected final PositionsCalculator<T> calculator;
 
     /**
      * Creates a new shape with the given start and end point.
@@ -29,9 +31,10 @@ public abstract class BaseShape<T extends Point> implements Shape<T> {
      * @param start the start point
      * @param end   the end point
      */
-    BaseShape(@NotNull T start, @NotNull T end) {
+    BaseShape(@NotNull T start, @NotNull T end, @NotNull PositionsCalculator<T> calculator) {
         this.start = start;
         this.end = end;
+        this.calculator = calculator;
         this.positions = new HashSet<>();
     }
 

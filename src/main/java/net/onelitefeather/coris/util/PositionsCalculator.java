@@ -4,6 +4,7 @@ import net.minestom.server.coordinate.Point;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.UnmodifiableView;
 
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -19,13 +20,10 @@ public interface PositionsCalculator<T extends Point> {
 
     /**
      * Calculates the positions between two points.
-     *
-     * @param start the start point
-     * @param end   the end point
      * @return the positions between the two points
      */
     @NotNull
     @UnmodifiableView
-    Set<T> calculatePositions(@NotNull T start, @NotNull T end);
+    Set<T> calculatePositions(@NotNull @UnmodifiableView List<T> points);
 
 }

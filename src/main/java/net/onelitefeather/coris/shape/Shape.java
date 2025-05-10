@@ -30,7 +30,7 @@ public interface Shape<T extends Point> extends Comparable<Shape<T>>, Intersect<
     /**
      * Calculates the positions of the shape asynchronously.
      */
-    @NotNull CompletableFuture<Set<T>> calculatePositionsAsync();
+    @NotNull CompletableFuture<Void> calculatePositionsAsync();
 
     /**
      * Returns the relative start point of the shape.
