@@ -18,7 +18,7 @@ class BaseDoorTest {
     @Test
     void testDoorCreation() {
         Key key = Key.key("door:test");
-        Door door = new TestDoor(key, DoorFace.NORTH, new CuboidShape<Point>(Vec.ZERO, new Vec(1, 1, 1), PositionBase::getEmptyList));
+        Door door = new TestDoor(key, DoorFace.NORTH, new CuboidShape<Point>(Vec.ZERO, new Vec(1, 1, 1)));
         assertNotNull(door);
         assertEquals(DoorFace.NORTH, door.face());
         assertNotEquals(UUID.randomUUID(), door.id());

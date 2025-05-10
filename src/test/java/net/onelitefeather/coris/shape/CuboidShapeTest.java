@@ -17,14 +17,14 @@ class CuboidShapeTest {
     void testInvalidCuboidCreation() {
         assertThrowsExactly(
                 IllegalArgumentException.class,
-                () -> new CuboidShape<>(Pos.ZERO, Pos.ZERO, PositionBase::getEmptyList),
+                () -> new CuboidShape<Point>(Pos.ZERO, Pos.ZERO, PositionBase::getEmptyList),
                 "The cuboid shape should not be created with the same position"
         );
     }
 
     @Test
     void testSuccessfullyTwoDIntersect() {
-        Shape<Point> cuboidShape = new CuboidShape<>(Vec.ZERO, new Vec(10, 10, 10), PositionBase::getEmptyList);
+        Shape<Vec> cuboidShape = new CuboidShape<>(Vec.ZERO, new Vec(10, 10, 10), PositionBase::getEmptyList);
         assertInstanceOf(Shape.class, cuboidShape);
         assertInstanceOf(CuboidShape.class, cuboidShape);
 
