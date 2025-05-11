@@ -20,7 +20,7 @@ The project is available over the `Reposilite` repository from the OneLiteFeathe
 ### Gradle
 
 ```gradle
-implementation("net.theevilreaper:coris:coris:<version>")
+implementation("net.onelitefeather:coris:<version>")
 ```
 
 ## Contribution
