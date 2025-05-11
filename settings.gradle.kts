@@ -21,17 +21,18 @@ dependencyResolutionManagement {
     }
     versionCatalogs {
         create("libs") {
-            version("minestom", "1.5.1")
-            version("junit", "5.12.1")
             version("phoca", "0.5.3")
+            version("bom", "1.2.3")
 
-            library("microtus-bom", "net.onelitefeather.microtus", "bom").versionRef("minestom")
-            library("minestom", "net.onelitefeather.microtus", "Microtus").withoutVersion()
-            library("minestom-test", "net.onelitefeather.microtus.testing", "testing").withoutVersion()
-
+            library("mycelium.bom", "net.onelitefeather", "mycelium-bom").versionRef("bom")
             library("phoca", "net.onelitefeather.phoca", "phoca").versionRef("phoca")
-            library("junit.api", "org.junit.jupiter", "junit-jupiter-api").versionRef("junit")
-            library("junit.engine", "org.junit.jupiter", "junit-jupiter-engine").versionRef("junit")
+
+            library("minestom", "net.minestom", "minestom-snapshots").withoutVersion()
+            library("cyano", "net.onelitefeather", "cyano").withoutVersion()
+            library("junit.api", "org.junit.jupiter", "junit-jupiter-api").withoutVersion()
+            library("junit.engine", "org.junit.jupiter", "junit-jupiter-engine").withoutVersion()
+            library("junit.params", "org.junit.jupiter", "junit-jupiter-params").withoutVersion()
+            library("junit.platform.launcher", "org.junit.platform", "junit-platform-launcher").withoutVersion()
         }
     }
 }

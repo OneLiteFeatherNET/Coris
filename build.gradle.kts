@@ -5,20 +5,21 @@ plugins {
     `maven-publish`
 }
 
-group = "net.theevilreaper.coris"
-version = "0.0.1"
+group = "net.onelitefeather"
+version = "0.1.0"
 
 dependencies {
-    implementation(platform(libs.microtus.bom))
+    implementation(platform(libs.mycelium.bom))
 
     compileOnly(libs.phoca)
     compileOnly(libs.minestom)
 
-    testImplementation(platform(libs.microtus.bom))
     testImplementation(libs.minestom)
-    testImplementation(libs.minestom.test)
+    testImplementation(libs.cyano)
     testImplementation(libs.phoca)
     testImplementation(libs.junit.api)
+    testImplementation(libs.junit.params)
+    testImplementation(libs.junit.platform.launcher)
     testRuntimeOnly(libs.junit.engine)
 }
 
