@@ -22,6 +22,13 @@ import java.util.UUID;
 public sealed interface Door permits BaseDoor {
 
     /**
+     * Triggers the animation for the door.
+     *
+     * @param animationState the state of the animation
+     */
+    void playAnimation(@NotNull AnimationState animationState);
+
+    /**
      * Triggers the open logic for the door.
      */
     void open();
