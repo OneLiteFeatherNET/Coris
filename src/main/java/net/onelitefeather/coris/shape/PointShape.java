@@ -9,31 +9,18 @@ import org.jetbrains.annotations.NotNull;
  *
  * @param position the position of the point in the 3D space
  * @author theEvilReaper
- * @version 1.0.0
+ * @version 1.2.0
  * @since 0.1.0
  */
-public record PointShape(@NotNull Vec position) implements Shape<Vec> {
+public record PointShape(@NotNull Vec position) implements Shape {
 
     @Override
-    public int compareTo(@NotNull Shape<Vec> o) {
+    public int compareTo(@NotNull Shape o) {
         if (!(o instanceof PointShape(Vec position1))) return -1;
         int cmpX = Double.compare(this.position.x(), position1.x());
         if (cmpX != 0) return cmpX;
         int cmpY = Double.compare(this.position.y(), position1.y());
         if (cmpY != 0) return cmpY;
         return Double.compare(this.position.z(), position1.z());
-    }
-
-    @Override
-    public boolean intersect2D(@NotNull Vec position) {
-        return this.position.x() == position.x() &&
-               this.position.y() == position.y();
-    }
-
-    @Override
-    public boolean intersect3D(@NotNull Vec position) {
-        return this.position.x() == position.x() &&
-               this.position.y() == position.y() &&
-               this.position.z() == position.z();
     }
 }

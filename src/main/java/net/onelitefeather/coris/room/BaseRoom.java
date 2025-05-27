@@ -18,17 +18,16 @@ public abstract class BaseRoom implements Room {
 
     private final Key identifier;
     private final Map<String, Object> metaData;
+    private final Shape shape;
 
-    private final Shape<? extends Point> shape;
-
-    protected BaseRoom(@NotNull Key identifier, @NotNull Shape<? extends Point> shape) {
+    protected BaseRoom(@NotNull Key identifier, @NotNull Shape shape) {
         this(identifier, new HashMap<>(), shape);
     }
 
     protected BaseRoom(
             @NotNull Key identifier,
             @NotNull Map<String, Object> metaData,
-            @NotNull Shape<? extends Point> shape
+            @NotNull Shape shape
     ) {
         this.identifier = identifier;
         this.metaData = metaData;
@@ -76,7 +75,7 @@ public abstract class BaseRoom implements Room {
     }
 
     @Override
-    public @NotNull Shape<? extends Point> shape() {
+    public @NotNull Shape shape() {
         return this.shape;
     }
 
