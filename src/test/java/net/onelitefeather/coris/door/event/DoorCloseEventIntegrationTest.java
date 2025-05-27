@@ -1,8 +1,7 @@
 package net.onelitefeather.coris.door.event;
 
 import net.kyori.adventure.key.Key;
-import net.minestom.server.coordinate.Point;
-import net.minestom.server.coordinate.Pos;
+import net.minestom.server.coordinate.Vec;
 import net.minestom.server.instance.Instance;
 import net.minestom.testing.Env;
 import net.minestom.testing.extension.MicrotusExtension;
@@ -24,7 +23,7 @@ class DoorCloseEventIntegrationTest {
     void testEventConstruction(@NotNull Env env) {
         Instance instance = env.createFlatInstance();
         Key key = Key.key("door:test");
-        Door door = new TestDoor(key, DoorFace.EAST, new CuboidShape<Point>(Pos.ZERO, new Pos(1, 1, 1), DefaultPositionCalculator::calculatePositions));
+        Door door = new TestDoor(key, DoorFace.EAST, new CuboidShape(Vec.ZERO, new Vec(1, 1, 1)));
         assertNotNull(door);
 
         DoorCloseEvent doorCloseEvent = new DoorCloseEvent(door, instance);
