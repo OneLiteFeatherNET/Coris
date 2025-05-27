@@ -9,7 +9,7 @@ import org.jetbrains.annotations.NotNull;
 
 /**
  * The implementation of the {@link BaseRoom} is used to test the room system.
- * It's a simple room with a shape of a cube.
+ * It's a simple room with the shape of a cube.
  *
  * @author theEvilReaper
  * @version 1.0.0
@@ -17,7 +17,7 @@ import org.jetbrains.annotations.NotNull;
  */
 public final class TestRoom extends BaseRoom {
 
-    public static final Shape<Vec> VEC_SHAPE = new CuboidShape(Vec.ZERO, new Vec(10, 10, 10));
+    public static final Shape VEC_SHAPE = new CuboidShape(Vec.ZERO, new Vec(10, 10, 10));
 
     public TestRoom(@NotNull Key identifier) {
         super(identifier, VEC_SHAPE);
