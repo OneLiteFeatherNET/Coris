@@ -1,8 +1,6 @@
 package net.onelitefeather.coris.shape;
 
-import net.minestom.server.coordinate.Pos;
 import net.minestom.server.coordinate.Vec;
-import net.onelitefeather.coris.util.DefaultPositionCalculator;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
