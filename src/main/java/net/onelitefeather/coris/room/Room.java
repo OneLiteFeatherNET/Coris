@@ -1,8 +1,7 @@
 package net.onelitefeather.coris.room;
 
 import net.kyori.adventure.key.Key;
-import net.minestom.server.coordinate.Point;
-import net.onelitefeather.phoca.metadata.Metadata;
+import net.onelitefeather.coris.component.Componentable;
 import net.onelitefeather.coris.shape.Shape;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
@@ -26,7 +25,7 @@ import java.util.Comparator;
  * @since 0.1.0
  */
 @ApiStatus.Experimental
-public interface Room extends Metadata, Comparator<Key> {
+public interface Room extends Componentable, Comparator<Key> {
 
     /**
      * Returns the identifier of the room.

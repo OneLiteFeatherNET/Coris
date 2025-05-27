@@ -1,7 +1,7 @@
 package net.onelitefeather.coris.floor;
 
 import net.kyori.adventure.key.Key;
-import net.onelitefeather.phoca.metadata.Metadata;
+import net.onelitefeather.coris.component.Componentable;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.UnmodifiableView;
@@ -18,7 +18,7 @@ import java.util.Map;
  * @since 0.1.0
  */
 @ApiStatus.Experimental
-public interface Floor<T> extends Metadata {
+public interface Floor<T> extends Componentable {
 
     /**
      * Adds a new object to the floor.

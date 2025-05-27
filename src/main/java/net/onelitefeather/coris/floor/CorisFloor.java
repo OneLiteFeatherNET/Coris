@@ -1,7 +1,7 @@
 package net.onelitefeather.coris.floor;
 
 import net.kyori.adventure.key.Key;
-import net.onelitefeather.phoca.metadata.Metadata;
+import net.onelitefeather.coris.component.CorisComponent;
 import net.onelitefeather.coris.room.Room;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -10,69 +10,66 @@ import org.jetbrains.annotations.UnmodifiableView;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.Optional;
 
-public final class CorisFloor<T extends Room> implements Floor<T> {
+public final class CorisFloor<K extends Room> implements Floor<K> {
 
     private final Key identifier;
-    private final Map<Key, T> data;
-    private final Map<String, Object> metaData;
+    private final Map<Key, K> data;
+    private final Map<Class<? extends CorisComponent>, CorisComponent> components;
 
     public CorisFloor(@NotNull Key identifier) {
         this.identifier = identifier;
         this.data = new HashMap<>();
-        this.metaData = new HashMap<>();
+        this.components = new HashMap<>();
     }
 
-    public CorisFloor(@NotNull Key identifier, @NotNull Map<Key, T> data, @NotNull Map<String, Object> metaData) {
+    public CorisFloor(
+            @NotNull Key identifier,
+            @NotNull Map<Key, K> data,
+            @NotNull Map<Class<? extends CorisComponent>, CorisComponent> components
+    ) {
         this.identifier = identifier;
         this.data = data;
-        this.metaData = metaData;
+        this.components = components;
     }
 
     @Override
-    public void addMetaData(@NotNull String key, @NotNull Object value) {
-        this.metaData.put(key, value);
+    public void add(@NotNull Key objectId, @NotNull K object) {
+        this.data.computeIfAbsent(objectId, k -> object);
     }
 
     @Override
-    public void removeMetaData(@NotNull String key) {
-        this.metaData.remove(key);
+    public void remove(@NotNull Key id) {
+        this.data.remove(id);
     }
 
     @Override
-    public boolean hasMetaData(@NotNull String key) {
-        return this.metaData.containsKey(key);
+    public <T extends CorisComponent> void add(@NotNull Class<T> componentClass, @NotNull T component) {
+        this.components.computeIfAbsent(componentClass, k -> component);
     }
 
     @Override
-    public @NotNull Optional<@Nullable Object> getMetaData(@NotNull String key) {
-        return Optional.ofNullable(this.metaData.get(key));
+    public <T extends CorisComponent> @Nullable T remove(@NotNull Class<T> componentClass) {
+        return componentClass.cast(this.components.remove(componentClass));
     }
 
     @Override
-    public @NotNull @UnmodifiableView Map<String, Object> metaData() {
-        return Map.copyOf(this.metaData);
+    public <T extends CorisComponent> boolean has(@NotNull Class<T> componentClass) {
+        return this.components.containsKey(componentClass);
     }
 
     @Override
-    public long creationDate() {
-        return (long) this.metaData.getOrDefault(Metadata.META_DATA_KEY_CREATION_DATE, -1L);
+    public <T extends CorisComponent> @Nullable T get(@NotNull Class<T> componentClass) {
+        return componentClass.cast(this.components.get(componentClass));
     }
 
     @Override
-    public long updateDate() {
-        return (long) this.metaData.getOrDefault(Metadata.META_DATA_KEY_UPDATE_DATE, -1L);
-    }
-
-    @Override
-    public void add(@NotNull Key objectId, @NotNull T object) {
-        this.data.put(objectId, object);
-    }
-
-    @Override
-    public void remove(@NotNull Key tId) {
-        this.data.remove(tId);
+    public boolean isEmpty() {
+        System.out.println("Checking if floor is empty: " + this.data.isEmpty());
+        data.forEach((corisComponent, key) -> {
+            System.out.println("Key: " + corisComponent + ", Room: " + key);
+        });
+        return this.data.isEmpty();
     }
 
     @Override
@@ -81,14 +78,12 @@ public final class CorisFloor<T extends Room> implements Floor<T> {
     }
 
     @Override
-    public boolean isEmpty() {
-        return this.data.isEmpty();
-    }
-
-    @Override
     public void clear() {
-        if (this.data.isEmpty()) return;
-        this.data.clear();
+        if (!this.data.isEmpty()) {
+            this.data.clear();
+        }
+        if (this.components.isEmpty()) return;
+        this.components.clear();
     }
 
     @Override
@@ -104,7 +99,7 @@ public final class CorisFloor<T extends Room> implements Floor<T> {
     }
 
     @Override
-    public @NotNull @UnmodifiableView Map<Key, T> getData() {
+    public @NotNull @UnmodifiableView Map<Key, K> getData() {
         return Map.copyOf(this.data);
     }
 }
