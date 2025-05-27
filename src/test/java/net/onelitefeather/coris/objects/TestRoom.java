@@ -5,7 +5,6 @@ import net.minestom.server.coordinate.Vec;
 import net.onelitefeather.coris.room.BaseRoom;
 import net.onelitefeather.coris.shape.CuboidShape;
 import net.onelitefeather.coris.shape.Shape;
-import net.onelitefeather.coris.util.DefaultPositionCalculator;
 import org.jetbrains.annotations.NotNull;
 
 /**
