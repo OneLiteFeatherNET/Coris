@@ -3,11 +3,6 @@ package net.onelitefeather.coris.shape;
 import net.minestom.server.coordinate.Point;
 import net.onelitefeather.coris.util.Intersect;
 import org.jetbrains.annotations.ApiStatus;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.UnmodifiableView;
-
-import java.util.Set;
-import java.util.concurrent.CompletableFuture;
 
 /**
  * The shape interface represents the area of a specific room.
