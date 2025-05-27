@@ -1,77 +1,81 @@
 package net.onelitefeather.coris.room;
 
 import net.kyori.adventure.key.Key;
-import net.minestom.server.coordinate.Point;
+import net.onelitefeather.coris.component.CorisComponent;
 import net.onelitefeather.coris.shape.Shape;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.jetbrains.annotations.UnmodifiableView;
 
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 
+/**
+ * The {@link BaseRoom} class is a basic implementation of the {@link Room} interface.
+ * It provides a structure for rooms with a unique identifier, a shape, and a collection of components.
+ *
+ * @author theEvilReaper
+ * @version 1.2.0
+ * @since 0.1.0
+ */
 @ApiStatus.Experimental
-public abstract class BaseRoom implements Room {
+public class BaseRoom implements Room {
 
     private final Key identifier;
-    private final Map<String, Object> metaData;
+    private final Map<Class<? extends CorisComponent>, CorisComponent> components;
     private final Shape shape;
 
-    protected BaseRoom(@NotNull Key identifier, @NotNull Shape shape) {
+    /**
+     * Constructs a new BaseRoom instance with the specified identifier and shape.
+     *
+     * @param identifier the unique identifier for the room
+     * @param shape      the shape of the room
+     */
+    public BaseRoom(@NotNull Key identifier, @NotNull Shape shape) {
         this(identifier, new HashMap<>(), shape);
     }
 
-    protected BaseRoom(
+    /**
+     * Constructs a new BaseRoom instance with the specified identifier, components, and shape.
+     *
+     * @param identifier the unique identifier for the room
+     * @param components a map of components where the key is the class of the component and the value is the corresponding RoomComponent
+     * @param shape      the shape of the room
+     */
+    public BaseRoom(
             @NotNull Key identifier,
-            @NotNull Map<String, Object> metaData,
+            @NotNull Map<Class<? extends CorisComponent>, CorisComponent> components,
             @NotNull Shape shape
     ) {
         this.identifier = identifier;
-        this.metaData = metaData;
+        this.components = new HashMap<>();
         this.shape = shape;
     }
 
+
     @Override
-    public void addMetaData(@NotNull String key, @NotNull Object value) {
-        this.metaData.put(key, value);
+    public <T extends CorisComponent> void add(@NotNull Class<T> componentClass, @NotNull T component) {
+        this.components.computeIfAbsent(componentClass, k -> component);
     }
 
     @Override
-    public void removeMetaData(@NotNull String key) {
-        this.metaData.remove(key);
+    public <T extends CorisComponent> boolean has(@NotNull Class<T> componentClass) {
+        return this.components.containsKey(componentClass);
     }
 
     @Override
-    public @NotNull Optional<@Nullable Object> getMetaData(@NotNull String key) {
-        return Optional.ofNullable(this.metaData.get(key));
+    public <T extends CorisComponent> @Nullable T get(@NotNull Class<T> componentClass) {
+        return componentClass.cast(this.components.get(componentClass));
     }
 
     @Override
-    public boolean hasMetaData(@NotNull String key) {
-        return this.metaData.containsKey(key);
-    }
-
-    @Override
-    public @NotNull @UnmodifiableView Map<String, Object> metaData() {
-        return Collections.unmodifiableMap(this.metaData);
+    public <T extends CorisComponent> @Nullable T remove(@NotNull Class<T> componentClass) {
+        return componentClass.cast(this.components.remove(componentClass));
     }
 
     @Override
     public @NotNull Key identifier() {
         return identifier;
-    }
-
-    @Override
-    public long creationDate() {
-        return (long) this.metaData().getOrDefault(META_DATA_KEY_CREATION_DATE, -1);
-    }
-
-    @Override
-    public long updateDate() {
-        return (long) this.metaData().getOrDefault(META_DATA_KEY_UPDATE_DATE, -1);
     }
 
     @Override
