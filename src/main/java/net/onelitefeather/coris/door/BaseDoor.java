@@ -13,7 +13,7 @@ public abstract non-sealed class BaseDoor implements Door {
     protected final UUID uuid;
     protected final Key key;
     protected final DoorFace face;
-    protected final Shape<? extends Point> shape;
+    protected final Shape shape;
 
     protected boolean locked;
     protected AnimationState animationState;
@@ -26,7 +26,7 @@ public abstract non-sealed class BaseDoor implements Door {
      * @param face  the face of the door
      * @param shape the shape from the door
      */
-    protected BaseDoor(@NotNull UUID uuid, @NotNull Key key, @NotNull DoorFace face, @NotNull Shape<? extends Point> shape) {
+    protected BaseDoor(@NotNull UUID uuid, @NotNull Key key, @NotNull DoorFace face, @NotNull Shape shape) {
         this.uuid = uuid;
         this.key = key;
         this.face = face;
@@ -41,7 +41,7 @@ public abstract non-sealed class BaseDoor implements Door {
      * @param face  the face of the door
      * @param shape the shape from the door
      */
-    protected BaseDoor(@NotNull Key key, @NotNull DoorFace face, @NotNull Shape<? extends Point> shape) {
+    protected BaseDoor(@NotNull Key key, @NotNull DoorFace face, @NotNull Shape shape) {
         this(UUID.randomUUID(), key, face, shape);
     }
 
@@ -82,7 +82,7 @@ public abstract non-sealed class BaseDoor implements Door {
     }
 
     @Override
-    public @NotNull Shape<? extends Point> shape() {
+    public @NotNull Shape shape() {
         return this.shape;
     }
 }

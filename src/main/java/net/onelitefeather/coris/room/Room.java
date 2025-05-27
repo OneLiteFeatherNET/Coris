@@ -18,11 +18,11 @@ import java.util.Comparator;
  * <p>
  * If the use case requires additional information to store, there is a metadata system included into the room.
  * The metadata system is a key-value store where you can store any kind of information.
- * Each data only available during the lifecycle of a room reference.
+ * Each data is only available during the lifecycle of a room reference.
  * When you need to store them into a database, you will need to serialize them by your own.
  *
  * @author theEvilReaper
- * @version 1.0.0
+ * @version 1.2.0
  * @since 0.1.0
  */
 @ApiStatus.Experimental
@@ -40,5 +40,5 @@ public interface Room extends Metadata, Comparator<Key> {
      *
      * @return the shape
      */
-    @NotNull Shape<? extends Point> shape();
+    @NotNull Shape shape();
 }

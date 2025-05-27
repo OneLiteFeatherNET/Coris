@@ -79,6 +79,6 @@ public sealed interface Door permits BaseDoor {
      *
      * @return the shape reference
      */
-    @NotNull Shape<? extends Point> shape();
+    @NotNull Shape shape();
 
 }
