@@ -10,11 +10,11 @@ import org.jetbrains.annotations.NotNull;
  * @param start the starting point of the cuboid
  * @param end   the ending point of the cuboid
  * @author theEvilReaper
- * @version 1.0.0
- * @since 0.2.0
+ * @version 1.2.0
+ * @since 0.1.0
  */
 @ApiStatus.Experimental
-public record CuboidShape(@NotNull Vec start, @NotNull Vec end) implements Shape<Vec> {
+public record CuboidShape(@NotNull Vec start, @NotNull Vec end) implements Shape {
 
     /**
      * Creates a new cuboid shape with the specified start and end points.
@@ -32,27 +32,7 @@ public record CuboidShape(@NotNull Vec start, @NotNull Vec end) implements Shape
     }
 
     @Override
-    public boolean intersect2D(@NotNull Vec position) {
-        int x = position.blockX();
-        int z = position.blockZ();
-        return x >= start.blockX() && x <= end.blockX() && z >= start.blockZ() && z <= end.blockZ();
-    }
-
-    @Override
-    public boolean intersect3D(@NotNull Vec position) {
-        int x = position.blockX();
-        int z = position.blockZ();
-        int y = position.blockY();
-        return x >= start.blockX()
-                && x <= end.blockX()
-                && y >= start.blockY()
-                && y <= end.blockY()
-                && z >= start.blockZ()
-                && z <= end.blockZ();
-    }
-
-    @Override
-    public int compareTo(@NotNull Shape<Vec> o) {
+    public int compareTo(@NotNull Shape o) {
         if (!(o instanceof CuboidShape(Vec start1, Vec end1))) {
             return -1;
         }
