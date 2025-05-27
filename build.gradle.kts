@@ -11,12 +11,10 @@ version = "0.2.0"
 dependencies {
     implementation(platform(libs.mycelium.bom))
 
-    compileOnly(libs.phoca)
     compileOnly(libs.minestom)
 
     testImplementation(libs.minestom)
     testImplementation(libs.cyano)
-    testImplementation(libs.phoca)
     testImplementation(libs.junit.api)
     testImplementation(libs.junit.params)
     testImplementation(libs.junit.platform.launcher)
