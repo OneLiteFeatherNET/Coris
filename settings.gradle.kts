@@ -25,7 +25,6 @@ dependencyResolutionManagement {
             version("bom", "1.2.3")
 
             library("mycelium.bom", "net.onelitefeather", "mycelium-bom").versionRef("bom")
-            library("phoca", "net.onelitefeather.phoca", "phoca").versionRef("phoca")
 
             library("minestom", "net.minestom", "minestom-snapshots").withoutVersion()
             library("cyano", "net.onelitefeather", "cyano").withoutVersion()
