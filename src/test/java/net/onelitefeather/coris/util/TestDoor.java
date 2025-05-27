@@ -10,7 +10,7 @@ import org.jetbrains.annotations.NotNull;
 
 public final class TestDoor extends BaseDoor {
 
-    public TestDoor(@NotNull Key key, @NotNull DoorFace face, @NotNull Shape<? extends Point> shape) {
+    public TestDoor(@NotNull Key key, @NotNull DoorFace face, @NotNull Shape shape) {
         super(key, face, shape);
     }
 
