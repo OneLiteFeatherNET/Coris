@@ -4,7 +4,7 @@ import net.minestom.server.coordinate.Point;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * The intersect interface is used to determine if a point intersects with a shape.
+ * The {@link Intersect} interface is used to determine if a point intersects with a shape.
  *
  * @param <T> the type of point
  * @version 1.0.0
