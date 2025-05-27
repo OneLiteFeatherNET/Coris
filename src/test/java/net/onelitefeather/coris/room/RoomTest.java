@@ -2,6 +2,7 @@ package net.onelitefeather.coris.room;
 
 import net.kyori.adventure.key.Key;
 import net.onelitefeather.coris.objects.TestRoom;
+import net.onelitefeather.coris.shape.CuboidShape;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -13,5 +14,6 @@ class RoomTest {
         Room room = new TestRoom(Key.key("test_room"));
         assertNotNull(room);
         assertEquals(Key.key("test_room"), room.identifier());
+        assertInstanceOf(CuboidShape.class, room.shape());
     }
 }
