@@ -18,7 +18,7 @@ import org.jetbrains.annotations.NotNull;
  */
 public final class TestRoom extends BaseRoom {
 
-    public static final Shape<Vec> VEC_SHAPE = new CuboidShape<>(Vec.ZERO, new Vec(10, 10, 10), DefaultPositionCalculator::calculatePositions);
+    public static final Shape<Vec> VEC_SHAPE = new CuboidShape(Vec.ZERO, new Vec(10, 10, 10));
 
     public TestRoom(@NotNull Key identifier) {
         super(identifier, VEC_SHAPE);

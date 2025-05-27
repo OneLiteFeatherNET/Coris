@@ -20,34 +20,4 @@ import java.util.concurrent.CompletableFuture;
  * @since 0.1.0
  */
 @ApiStatus.Experimental
-public interface Shape<T extends Point> extends Comparable<Shape<T>>, Intersect<T> {
-
-    /**
-     * Calculates the positions of the shape.
-     */
-    void calculatePositions();
-
-    /**
-     * Calculates the positions of the shape asynchronously.
-     */
-    @NotNull CompletableFuture<Set<T>> calculatePositionsAsync();
-
-    /**
-     * Returns the relative start point of the shape.
-     *
-     * @return the start point
-     */
-    @NotNull T start();
-
-    /**
-     * Returns the relative end point of the shape.
-     *
-     * @return the end point
-     */
-    @NotNull T end();
-
-    @NotNull
-    @UnmodifiableView
-    Set<T> positions();
-
-}
+public interface Shape<T extends Point> extends Comparable<Shape<T>>, Intersect<T> { }
