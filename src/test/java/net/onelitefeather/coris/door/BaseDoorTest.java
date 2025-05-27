@@ -24,7 +24,7 @@ class BaseDoorTest {
         assertEquals(key, door.key());
         assertFalse(door.isLocked());
 
-        Shape<? extends Point> shape = door.shape();
+        Shape shape = door.shape();
         assertNotNull(shape);
         assertInstanceOf(CuboidShape.class, shape);
 
