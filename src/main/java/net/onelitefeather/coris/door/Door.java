@@ -1,7 +1,7 @@
 package net.onelitefeather.coris.door;
 
 import net.kyori.adventure.key.Key;
-import net.minestom.server.coordinate.Point;
+import net.onelitefeather.coris.component.Componentable;
 import net.onelitefeather.coris.shape.Shape;
 import org.jetbrains.annotations.NotNull;
 
@@ -19,7 +19,7 @@ import java.util.UUID;
  * @version 1.0.0
  * @since 0.1.0
  */
-public sealed interface Door permits BaseDoor {
+public sealed interface Door extends Componentable permits BaseDoor {
 
     /**
      * Triggers the animation for the door.
@@ -39,20 +39,6 @@ public sealed interface Door permits BaseDoor {
     void unlock();
 
     /**
-     * Set's the new locked state.
-     *
-     * @param locked the state to set
-     */
-    void setLocked(boolean locked);
-
-    /**
-     * Returns an indication value if the door is locked or not.
-     *
-     * @return true when its locked otherwise false
-     */
-    boolean isLocked();
-
-    /**
      * The unique identifier from the door which is a {@link UUID}.
      *
      * @return the given identifier
@@ -61,7 +47,6 @@ public sealed interface Door permits BaseDoor {
 
     /**
      * Returns the given {@link Key} from the adventure library.
-     * Note this key should not be used an identifier because they are not unique.
      *
      * @return the given key
      */

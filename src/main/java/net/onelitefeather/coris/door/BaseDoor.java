@@ -1,22 +1,33 @@
 package net.onelitefeather.coris.door;
 
 import net.kyori.adventure.key.Key;
-import net.minestom.server.coordinate.Point;
+import net.onelitefeather.coris.component.CorisComponent;
 import net.onelitefeather.coris.shape.Shape;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.UUID;
 
+/**
+ * The {@link BaseDoor} is an abstract class that implements the {@link Door} interface.
+ * It provides a base implementation for doors in the system, including properties to handle different states and characteristics of a door.
+ *
+ * @author theEvilReaper
+ * @version 1.1.0
+ * @since 0.1.0
+ */
 public abstract non-sealed class BaseDoor implements Door {
 
     protected final UUID uuid;
     protected final Key key;
     protected final DoorFace face;
     protected final Shape shape;
-
-    protected boolean locked;
     protected AnimationState animationState;
+
+    private final Map<Class<? extends CorisComponent>, CorisComponent> componentMap;
 
     /**
      * Creates a new instance from the door class with the given values.
@@ -26,12 +37,19 @@ public abstract non-sealed class BaseDoor implements Door {
      * @param face  the face of the door
      * @param shape the shape from the door
      */
-    protected BaseDoor(@NotNull UUID uuid, @NotNull Key key, @NotNull DoorFace face, @NotNull Shape shape) {
+    protected BaseDoor(
+            @NotNull UUID uuid,
+            @NotNull Key key,
+            @NotNull DoorFace face,
+            @NotNull Shape shape,
+            @NotNull Map<Class<? extends CorisComponent>, CorisComponent> componentMap
+    ) {
         this.uuid = uuid;
         this.key = key;
         this.face = face;
         this.shape = shape;
         this.animationState = AnimationState.IDLE;
+        this.componentMap = componentMap;
     }
 
     /**
@@ -42,12 +60,27 @@ public abstract non-sealed class BaseDoor implements Door {
      * @param shape the shape from the door
      */
     protected BaseDoor(@NotNull Key key, @NotNull DoorFace face, @NotNull Shape shape) {
-        this(UUID.randomUUID(), key, face, shape);
+        this(UUID.randomUUID(), key, face, shape, new HashMap<>());
     }
 
     @Override
-    public void setLocked(boolean locked) {
-        this.locked = locked;
+    public <T extends CorisComponent> void add(@NotNull Class<T> componentClass, @NotNull T component) {
+        this.componentMap.put(componentClass, component);
+    }
+
+    @Override
+    public <T extends CorisComponent> boolean has(@NotNull Class<T> componentClass) {
+        return this.componentMap.containsKey(componentClass);
+    }
+
+    @Override
+    public <T extends CorisComponent> @Nullable T get(@NotNull Class<T> componentClass) {
+        return componentClass.cast(this.componentMap.get(componentClass));
+    }
+
+    @Override
+    public <T extends CorisComponent> @Nullable T remove(@NotNull Class<T> componentClass) {
+        return componentClass.cast(this.componentMap.remove(componentClass));
     }
 
     @Override
@@ -74,11 +107,6 @@ public abstract non-sealed class BaseDoor implements Door {
     @Override
     public @NotNull DoorFace face() {
         return this.face;
-    }
-
-    @Override
-    public boolean isLocked() {
-        return this.locked;
     }
 
     @Override
