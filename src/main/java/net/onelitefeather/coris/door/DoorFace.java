@@ -19,7 +19,6 @@ import java.util.Optional;
  *   <li>A primary name for identification</li>
  *   <li>An alias for alternative naming (often relative directions)</li>
  * </ul>
- * </p>
  *
  * @author theEvilReaper
  * @version 1.0.0
@@ -151,7 +150,6 @@ public enum DoorFace {
      *   <li>2 = SOUTH</li>
      *   <li>3 = WEST</li>
      * </ul>
-     * </p>
      *
      * @param id the ordinal position (0-based index)
      * @return an Optional containing the DoorFace if the id is valid,
@@ -178,7 +176,6 @@ public enum DoorFace {
      *   <li>"south", "down" → SOUTH</li>
      *   <li>"west", "left" → WEST</li>
      * </ul>
-     * </p>
      *
      * @param name the name or alias to search for (case-insensitive)
      * @return an Optional containing the matching DoorFace, or empty if no match is found
