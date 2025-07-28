@@ -32,10 +32,11 @@ public abstract non-sealed class BaseDoor implements Door {
     /**
      * Creates a new instance from the door class with the given values.
      *
-     * @param uuid  the uuid for the door
-     * @param key   the {@link Key} for the door
-     * @param face  the face of the door
-     * @param shape the shape from the door
+     * @param uuid         the uuid for the door
+     * @param key          the {@link Key} for the door
+     * @param face         the face of the door
+     * @param shape        the shape from the door
+     * @param componentMap a map of components associated with the door
      */
     protected BaseDoor(
             @NotNull UUID uuid,
