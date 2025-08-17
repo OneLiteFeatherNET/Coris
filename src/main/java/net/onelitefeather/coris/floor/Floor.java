@@ -9,7 +9,7 @@ import org.jetbrains.annotations.UnmodifiableView;
 import java.util.Map;
 
 /**
- * The {@link Floor} interface represents a structure that can hold different types of objects defined by the type parameter <T>.
+ * The {@link Floor} interface represents a structure that can hold different types of objects defined by the type parameter.
  * It provides methods to add, remove, and manage these objects, as well as metadata associated with the floor.
  *
  * @param <T> the type of objects that the floor can hold, typically extending from a class.

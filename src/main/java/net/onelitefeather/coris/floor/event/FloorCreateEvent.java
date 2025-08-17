@@ -8,6 +8,7 @@ import org.jetbrains.annotations.NotNull;
 /**
  * The event will only be called when the floor has no invalid data.
  *
+ * @param <T> the type of floor that is being created, typically extending from {@link Floor}.
  * @author theEvilReaper
  * @version 1.0.0
  * @since 0.1.0
@@ -20,7 +21,7 @@ public final class FloorCreateEvent<T extends Floor<? extends Room>> implements 
     /**
      * Create a new instance of the {@link FloorCreateEvent}.
      *
-     * @param floor   the floor who is involved into the event
+     * @param floor the floor who is involved into the event
      */
     public FloorCreateEvent(@NotNull T floor) {
         this.floor = floor;

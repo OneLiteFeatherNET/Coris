@@ -6,7 +6,13 @@ plugins {
 }
 
 group = "net.onelitefeather"
-version = "0.3.0"
+version = "0.4.0"
+
+java {
+    toolchain.languageVersion.set(JavaLanguageVersion.of(21))
+    withJavadocJar()
+    withSourcesJar()
+}
 
 dependencies {
     implementation(platform(libs.mycelium.bom))
