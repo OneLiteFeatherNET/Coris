@@ -1,7 +1,6 @@
 package net.onelitefeather.coris.util;
 
 import net.minestom.server.coordinate.Point;
-import org.jetbrains.annotations.NotNull;
 
 /**
  * The {@link Intersect} interface is used to determine if a point intersects with a shape.

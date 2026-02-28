@@ -4,7 +4,6 @@ import net.minestom.server.event.trait.CancellableEvent;
 import net.minestom.server.event.trait.InstanceEvent;
 import net.minestom.server.instance.Instance;
 import net.onelitefeather.coris.door.Door;
-import org.jetbrains.annotations.NotNull;
 
 /**
  * The event can be used to indicate that a {@link Door} was opened.

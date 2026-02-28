@@ -2,7 +2,6 @@ package net.onelitefeather.coris.floor;
 
 import net.kyori.adventure.key.Key;
 import net.onelitefeather.coris.room.Room;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.jetbrains.annotations.UnmodifiableView;
 

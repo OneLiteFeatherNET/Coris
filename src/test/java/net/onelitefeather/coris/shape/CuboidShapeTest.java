@@ -3,9 +3,6 @@ package net.onelitefeather.coris.shape;
 import net.minestom.server.coordinate.Vec;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class CuboidShapeTest {

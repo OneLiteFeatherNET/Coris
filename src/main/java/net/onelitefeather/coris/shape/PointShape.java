@@ -1,7 +1,6 @@
 package net.onelitefeather.coris.shape;
 
 import net.minestom.server.coordinate.Vec;
-import org.jetbrains.annotations.NotNull;
 
 /**
  * The {@link PointShape} represents an implementation of the {@link Shape} interface which describes a single point in a 3D space.

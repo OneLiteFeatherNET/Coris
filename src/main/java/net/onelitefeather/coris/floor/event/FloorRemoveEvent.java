@@ -2,7 +2,6 @@ package net.onelitefeather.coris.floor.event;
 
 import net.onelitefeather.coris.floor.Floor;
 import net.onelitefeather.coris.room.Room;
-import org.jetbrains.annotations.NotNull;
 
 /**
  * The event will be called when a floor should be removed.

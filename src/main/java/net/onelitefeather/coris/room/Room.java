@@ -4,7 +4,6 @@ import net.kyori.adventure.key.Key;
 import net.onelitefeather.coris.component.Componentable;
 import net.onelitefeather.coris.shape.Shape;
 import org.jetbrains.annotations.ApiStatus;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.Comparator;
 
