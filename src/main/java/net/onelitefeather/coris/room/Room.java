@@ -21,7 +21,7 @@ import java.util.Comparator;
  * When you need to store them into a database, you will need to serialize them by your own.
  *
  * @author theEvilReaper
- * @version 1.2.0
+ * @version 1.3.0
  * @since 0.1.0
  */
 @ApiStatus.Experimental
@@ -32,12 +32,12 @@ public interface Room extends Componentable, Comparator<Key> {
      *
      * @return the identifier
      */
-    @NotNull Key identifier();
+    Key identifier();
 
     /**
      * Returns the shape of the room.
      *
      * @return the shape
      */
-    @NotNull Shape shape();
+    Shape shape();
 }

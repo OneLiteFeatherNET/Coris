@@ -2,7 +2,6 @@ package net.onelitefeather.coris.shape;
 
 import net.minestom.server.coordinate.Vec;
 import org.jetbrains.annotations.ApiStatus;
-import org.jetbrains.annotations.NotNull;
 
 /**
  * The {@link CuboidShape} class represents a 3D cuboid shape defined by two points start and end.
@@ -10,11 +9,11 @@ import org.jetbrains.annotations.NotNull;
  * @param start the starting point of the cuboid
  * @param end   the ending point of the cuboid
  * @author theEvilReaper
- * @version 1.2.0
+ * @version 1.3.0
  * @since 0.1.0
  */
 @ApiStatus.Experimental
-public record CuboidShape(@NotNull Vec start, @NotNull Vec end) implements Shape {
+public record CuboidShape(Vec start, Vec end) implements Shape {
 
     /**
      * Creates a new cuboid shape with the specified start and end points.
@@ -32,7 +31,7 @@ public record CuboidShape(@NotNull Vec start, @NotNull Vec end) implements Shape
     }
 
     @Override
-    public int compareTo(@NotNull Shape o) {
+    public int compareTo(Shape o) {
         if (!(o instanceof CuboidShape(Vec start1, Vec end1))) {
             return -1;
         }
@@ -48,7 +47,7 @@ public record CuboidShape(@NotNull Vec start, @NotNull Vec end) implements Shape
      * @param second the second vector to compare
      * @return -1 if v1 is less than v2, 0 if they are equal, and 1 if v1 is greater than v2
      */
-    private int compareVec(@NotNull Vec first, @NotNull Vec second) {
+    private int compareVec(Vec first, Vec second) {
         int cmpX = Double.compare(first.x(), second.x());
         if (cmpX != 0) return cmpX;
 

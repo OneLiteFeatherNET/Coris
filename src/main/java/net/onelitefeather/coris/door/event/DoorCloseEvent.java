@@ -3,14 +3,13 @@ package net.onelitefeather.coris.door.event;
 import net.minestom.server.event.trait.InstanceEvent;
 import net.minestom.server.instance.Instance;
 import net.onelitefeather.coris.door.Door;
-import org.jetbrains.annotations.NotNull;
 
 /**
- * The event can be used to indicates that a {@link Door} was closed.
+ * The event can be used to indicate that a {@link Door} was closed.
  * You need to handle the close animation on your own.
  *
  * @author theEvilReaper
- * @version 1.0.0
+ * @version 1.1.0
  * @since 0.1.0
  */
 public class DoorCloseEvent implements InstanceEvent {
@@ -24,7 +23,7 @@ public class DoorCloseEvent implements InstanceEvent {
      * @param door     the door that was closed
      * @param instance the instance where the door was closed
      */
-    public DoorCloseEvent(@NotNull Door door, @NotNull Instance instance) {
+    public DoorCloseEvent(Door door, Instance instance) {
         this.door = door;
         this.instance = instance;
     }
@@ -34,12 +33,12 @@ public class DoorCloseEvent implements InstanceEvent {
      *
      * @return the door that was closed
      */
-    public @NotNull Door getDoor() {
+    public Door getDoor() {
         return door;
     }
 
     @Override
-    public @NotNull Instance getInstance() {
+    public Instance getInstance() {
         return this.instance;
     }
 }

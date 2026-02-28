@@ -3,7 +3,6 @@ package net.onelitefeather.coris.door;
 import net.kyori.adventure.key.Key;
 import net.onelitefeather.coris.component.Componentable;
 import net.onelitefeather.coris.shape.Shape;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.UUID;
 
@@ -16,7 +15,7 @@ import java.util.UUID;
  * ensuring type safety and controlled inheritance throughout the door system.
  *
  * @author theEvilReaper
- * @version 1.0.0
+ * @version 1.1.0
  * @since 0.1.0
  */
 public sealed interface Door extends Componentable permits BaseDoor {
@@ -26,7 +25,7 @@ public sealed interface Door extends Componentable permits BaseDoor {
      *
      * @param animationState the state of the animation
      */
-    void playAnimation(@NotNull AnimationState animationState);
+    void playAnimation(AnimationState animationState);
 
     /**
      * Triggers the open logic for the door.
@@ -43,27 +42,27 @@ public sealed interface Door extends Componentable permits BaseDoor {
      *
      * @return the given identifier
      */
-    @NotNull UUID id();
+    UUID id();
 
     /**
      * Returns the given {@link Key} from the adventure library.
      *
      * @return the given key
      */
-    @NotNull Key key();
+    Key key();
 
     /**
      * Returns the given {@link DoorFace} from the door.
      *
      * @return the face reference.
      */
-    @NotNull DoorFace face();
+    DoorFace face();
 
     /**
      * Returns the {@link Shape} reference from the door instance.
      *
      * @return the shape reference
      */
-    @NotNull Shape shape();
+    Shape shape();
 
 }

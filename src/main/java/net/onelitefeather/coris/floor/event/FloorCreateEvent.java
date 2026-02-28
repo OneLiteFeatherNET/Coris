@@ -3,14 +3,13 @@ package net.onelitefeather.coris.floor.event;
 import net.minestom.server.event.trait.CancellableEvent;
 import net.onelitefeather.coris.floor.Floor;
 import net.onelitefeather.coris.room.Room;
-import org.jetbrains.annotations.NotNull;
 
 /**
  * The event will only be called when the floor has no invalid data.
  *
  * @param <T> the type of floor that is being created, typically extending from {@link Floor}.
  * @author theEvilReaper
- * @version 1.0.0
+ * @version 1.1.0
  * @since 0.1.0
  */
 public final class FloorCreateEvent<T extends Floor<? extends Room>> implements CancellableEvent {
@@ -23,7 +22,7 @@ public final class FloorCreateEvent<T extends Floor<? extends Room>> implements 
      *
      * @param floor the floor who is involved into the event
      */
-    public FloorCreateEvent(@NotNull T floor) {
+    public FloorCreateEvent(T floor) {
         this.floor = floor;
     }
 
@@ -33,7 +32,7 @@ public final class FloorCreateEvent<T extends Floor<? extends Room>> implements 
      * @param floor     the floor who is involved into the event
      * @param cancelled if the event is cancelled or not
      */
-    public FloorCreateEvent(@NotNull T floor, boolean cancelled) {
+    public FloorCreateEvent(T floor, boolean cancelled) {
         this.floor = floor;
         this.cancelled = cancelled;
     }
@@ -63,7 +62,6 @@ public final class FloorCreateEvent<T extends Floor<? extends Room>> implements 
      *
      * @return the given floor
      */
-    @NotNull
     public T getFloor() {
         return this.floor;
     }

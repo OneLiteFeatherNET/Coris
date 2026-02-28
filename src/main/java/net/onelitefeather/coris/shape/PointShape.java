@@ -9,13 +9,13 @@ import org.jetbrains.annotations.NotNull;
  *
  * @param position the position of the point in the 3D space
  * @author theEvilReaper
- * @version 1.2.0
+ * @version 1.3.0
  * @since 0.1.0
  */
-public record PointShape(@NotNull Vec position) implements Shape {
+public record PointShape(Vec position) implements Shape {
 
     @Override
-    public int compareTo(@NotNull Shape o) {
+    public int compareTo(Shape o) {
         if (!(o instanceof PointShape(Vec position1))) return -1;
         int cmpX = Double.compare(this.position.x(), position1.x());
         if (cmpX != 0) return cmpX;

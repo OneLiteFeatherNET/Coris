@@ -7,12 +7,12 @@ import net.onelitefeather.coris.door.Door;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * The event can be used to indicates that a {@link Door} was opened.
+ * The event can be used to indicate that a {@link Door} was opened.
  * This event is cancellable, which means that the event can be cancelled and the door will not be opened for example.
  * You need to implement the cancellation of the open animation on your own.
  *
  * @author theEvilReaper
- * @version 1.0.0
+ * @version 1.1.0
  * @since 0.1.0
  */
 public class DoorOpenEvent implements InstanceEvent, CancellableEvent {
@@ -27,7 +27,7 @@ public class DoorOpenEvent implements InstanceEvent, CancellableEvent {
      * @param door     the door that was opened
      * @param instance the instance where the door was opened
      */
-    public DoorOpenEvent(@NotNull Door door, @NotNull Instance instance) {
+    public DoorOpenEvent(Door door, Instance instance) {
         this.door = door;
         this.instance = instance;
     }
@@ -57,12 +57,12 @@ public class DoorOpenEvent implements InstanceEvent, CancellableEvent {
      *
      * @return the door that was opened
      */
-    public @NotNull Door getDoor() {
+    public Door getDoor() {
         return door;
     }
 
     @Override
-    public @NotNull Instance getInstance() {
+    public Instance getInstance() {
         return this.instance;
     }
 }
