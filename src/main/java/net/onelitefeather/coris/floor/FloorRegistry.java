@@ -13,7 +13,7 @@ import java.util.Optional;
  *
  * @param <T> the type of floor that the registry can hold, typically extending from {@link Floor}.
  * @author theEvilReaper
- * @version 1.0.0
+ * @version 1.1.0
  * @since 0.1.0
  */
 @ApiStatus.Experimental
@@ -25,14 +25,14 @@ public interface FloorRegistry<T extends Floor<? extends Room>> {
      * @param floorId the id of the floor
      * @param floor   the floor to add
      */
-    void add(@NotNull Key floorId, @NotNull T floor);
+    void add(Key floorId, T floor);
 
     /**
      * Removes a floor from the registry.
      *
      * @param id the id of the floor
      */
-    void remove(@NotNull Key id);
+    void remove(Key id);
 
     /**
      * Clears the registry.
@@ -45,7 +45,7 @@ public interface FloorRegistry<T extends Floor<? extends Room>> {
      * @param id the id of the floor
      * @return the floor
      */
-    @NotNull Optional<@Nullable T> get(Key id);
+    Optional<@Nullable T> get(Key id);
 
     /**
      * Returns an unmodifiable view of the floors.
@@ -53,7 +53,7 @@ public interface FloorRegistry<T extends Floor<? extends Room>> {
      * @return the floors
      */
     @UnmodifiableView
-    @NotNull Map<Key, T> getFloors();
+    Map<Key, T> getFloors();
 
     /**
      * Returns an unmodifiable view of the floors.
@@ -62,5 +62,5 @@ public interface FloorRegistry<T extends Floor<? extends Room>> {
      * @return the floors
      */
     @UnmodifiableView
-    @NotNull Map<Key, T> getFloors(Comparator<T> comparator);
+    Map<Key, T> getFloors(Comparator<T> comparator);
 }

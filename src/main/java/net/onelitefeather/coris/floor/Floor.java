@@ -3,7 +3,6 @@ package net.onelitefeather.coris.floor;
 import net.kyori.adventure.key.Key;
 import net.onelitefeather.coris.component.Componentable;
 import org.jetbrains.annotations.ApiStatus;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.UnmodifiableView;
 
 import java.util.Map;
@@ -14,7 +13,7 @@ import java.util.Map;
  *
  * @param <T> the type of objects that the floor can hold, typically extending from a class.
  * @author theEvilReaper
- * @version 1.0.0
+ * @version 1.1.0
  * @since 0.1.0
  */
 @ApiStatus.Experimental
@@ -26,21 +25,21 @@ public interface Floor<T> extends Componentable {
      * @param objectId the id of the object
      * @param object   the object
      */
-    void add(@NotNull Key objectId, @NotNull T object);
+    void add(Key objectId, T object);
 
     /**
      * Removes an object from the floor.
      *
      * @param id the id of the object
      */
-    void remove(@NotNull Key id);
+    void remove(Key id);
 
     /**
      * Returns the id from a floor object.
      *
      * @return the object id
      */
-    @NotNull Key identifier();
+    Key identifier();
 
     /**
      * Returns an indicator if the floor contains any kind of rooms or not.
@@ -61,5 +60,5 @@ public interface Floor<T> extends Componentable {
      * @return the data
      */
     @UnmodifiableView
-    @NotNull Map<Key, T> getData();
+    Map<Key, T> getData();
 }

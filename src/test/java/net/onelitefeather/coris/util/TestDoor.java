@@ -1,7 +1,6 @@
 package net.onelitefeather.coris.util;
 
 import net.kyori.adventure.key.Key;
-import net.minestom.server.coordinate.Point;
 import net.onelitefeather.coris.door.AnimationState;
 import net.onelitefeather.coris.door.BaseDoor;
 import net.onelitefeather.coris.door.DoorFace;

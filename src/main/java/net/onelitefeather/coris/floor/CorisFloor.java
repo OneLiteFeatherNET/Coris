@@ -3,7 +3,6 @@ package net.onelitefeather.coris.floor;
 import net.kyori.adventure.key.Key;
 import net.onelitefeather.coris.component.CorisComponent;
 import net.onelitefeather.coris.room.Room;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.jetbrains.annotations.UnmodifiableView;
 
@@ -17,7 +16,7 @@ import java.util.Objects;
  *
  * @param <K> the type of room that the floor can hold, typically extending from {@link Room}.
  * @author theEvilReaper
- * @version 1.0.0
+ * @version 1.1.0
  * @since 0.1.0
  */
 public final class CorisFloor<K extends Room> implements Floor<K> {
@@ -31,7 +30,7 @@ public final class CorisFloor<K extends Room> implements Floor<K> {
      *
      * @param identifier the identifier of the floor
      */
-    public CorisFloor(@NotNull Key identifier) {
+    public CorisFloor(Key identifier) {
         this.identifier = identifier;
         this.data = new HashMap<>();
         this.components = new HashMap<>();
@@ -45,9 +44,9 @@ public final class CorisFloor<K extends Room> implements Floor<K> {
      * @param components the components of the floor
      */
     public CorisFloor(
-            @NotNull Key identifier,
-            @NotNull Map<Key, K> data,
-            @NotNull Map<Class<? extends CorisComponent>, CorisComponent> components
+            Key identifier,
+            Map<Key, K> data,
+            Map<Class<? extends CorisComponent>, CorisComponent> components
     ) {
         this.identifier = identifier;
         this.data = data;
@@ -58,7 +57,7 @@ public final class CorisFloor<K extends Room> implements Floor<K> {
      * {@inheritDoc}
      */
     @Override
-    public void add(@NotNull Key objectId, @NotNull K object) {
+    public void add(Key objectId, K object) {
         this.data.computeIfAbsent(objectId, k -> object);
     }
 
@@ -66,7 +65,7 @@ public final class CorisFloor<K extends Room> implements Floor<K> {
      * {@inheritDoc}
      */
     @Override
-    public void remove(@NotNull Key id) {
+    public void remove(Key id) {
         this.data.remove(id);
     }
 
@@ -74,7 +73,7 @@ public final class CorisFloor<K extends Room> implements Floor<K> {
      * {@inheritDoc}
      */
     @Override
-    public <T extends CorisComponent> void add(@NotNull Class<T> componentClass, @NotNull T component) {
+    public <T extends CorisComponent> void add(Class<T> componentClass, T component) {
         this.components.computeIfAbsent(componentClass, k -> component);
     }
 
@@ -82,7 +81,7 @@ public final class CorisFloor<K extends Room> implements Floor<K> {
      * {@inheritDoc}
      */
     @Override
-    public <T extends CorisComponent> @Nullable T remove(@NotNull Class<T> componentClass) {
+    public <T extends CorisComponent> @Nullable T remove(Class<T> componentClass) {
         return componentClass.cast(this.components.remove(componentClass));
     }
 
@@ -90,7 +89,7 @@ public final class CorisFloor<K extends Room> implements Floor<K> {
      * {@inheritDoc}
      */
     @Override
-    public <T extends CorisComponent> boolean has(@NotNull Class<T> componentClass) {
+    public <T extends CorisComponent> boolean has(Class<T> componentClass) {
         return this.components.containsKey(componentClass);
     }
 
@@ -98,7 +97,7 @@ public final class CorisFloor<K extends Room> implements Floor<K> {
      * {@inheritDoc}
      */
     @Override
-    public <T extends CorisComponent> @Nullable T get(@NotNull Class<T> componentClass) {
+    public <T extends CorisComponent> @Nullable T get(Class<T> componentClass) {
         return componentClass.cast(this.components.get(componentClass));
     }
 
@@ -114,7 +113,7 @@ public final class CorisFloor<K extends Room> implements Floor<K> {
      * {@inheritDoc}
      */
     @Override
-    public @NotNull Key identifier() {
+    public Key identifier() {
         return this.identifier;
     }
 
@@ -146,7 +145,7 @@ public final class CorisFloor<K extends Room> implements Floor<K> {
      * {@inheritDoc}
      */
     @Override
-    public @NotNull @UnmodifiableView Map<Key, K> getData() {
+    public @UnmodifiableView Map<Key, K> getData() {
         return Map.copyOf(this.data);
     }
 }

@@ -2,7 +2,6 @@ package net.onelitefeather.coris.floor;
 
 import net.kyori.adventure.key.Key;
 import net.onelitefeather.coris.room.Room;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.jetbrains.annotations.UnmodifiableView;
 
@@ -25,7 +24,7 @@ import java.util.stream.Collectors;
  * @param <T> the type of floor managed by this registry, must extend {@link Floor}
  *           with a room type that extends {@link Room}
  * @author theEvilReaper
- * @version 1.0.0
+ * @version 1.1.0
  * @since 0.1.0
  * @see FloorRegistry
  * @see Floor
@@ -46,7 +45,7 @@ public class CorisFloorRegistry<T extends Floor<? extends Room>> implements Floo
      * {@inheritDoc}
      */
     @Override
-    public void add(@NotNull Key floorId, @NotNull T floor) {
+    public void add(Key floorId, T floor) {
         this.floors.put(floorId, floor);
     }
 
@@ -54,7 +53,7 @@ public class CorisFloorRegistry<T extends Floor<? extends Room>> implements Floo
      * {@inheritDoc}
      */
     @Override
-    public void remove(@NotNull Key id) {
+    public void remove(Key id) {
         this.floors.remove(id);
     }
 
@@ -71,7 +70,7 @@ public class CorisFloorRegistry<T extends Floor<? extends Room>> implements Floo
      * {@inheritDoc}
      */
     @Override
-    public @NotNull Optional<@Nullable T> get(Key id) {
+    public Optional<@Nullable T> get(Key id) {
         return Optional.ofNullable(this.floors.get(id));
     }
 
@@ -79,7 +78,7 @@ public class CorisFloorRegistry<T extends Floor<? extends Room>> implements Floo
      * {@inheritDoc}
      */
     @Override
-    public @UnmodifiableView @NotNull Map<Key, T> getFloors() {
+    public @UnmodifiableView Map<Key, T> getFloors() {
         return Collections.unmodifiableMap(this.floors);
     }
 
@@ -87,7 +86,7 @@ public class CorisFloorRegistry<T extends Floor<? extends Room>> implements Floo
      * {@inheritDoc}
      */
     @Override
-    public @UnmodifiableView @NotNull Map<Key, T> getFloors(@NotNull Comparator<T> comparator) {
+    public @UnmodifiableView Map<Key, T> getFloors(Comparator<T> comparator) {
         return this.floors.entrySet().stream()
                 .sorted(Map.Entry.comparingByValue(comparator))
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, HashMap::new));

@@ -1,7 +1,6 @@
 package net.onelitefeather.coris.door;
 
 import net.minestom.server.utils.Direction;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.Optional;
 
@@ -21,7 +20,7 @@ import java.util.Optional;
  * </ul>
  *
  * @author theEvilReaper
- * @version 1.0.0
+ * @version 1.1.0
  * @since 0.1.0
  */
 public enum DoorFace {
@@ -70,7 +69,7 @@ public enum DoorFace {
 
     /**
      * The primary name identifier for this door face.
-     * Typically matches the cardinal direction name.
+     * Typically, matches the cardinal direction name.
      */
     private final String name;
 
@@ -94,7 +93,7 @@ public enum DoorFace {
      * @param alias     the alternative name for this door face
      * @throws NullPointerException if any parameter is null
      */
-    DoorFace(@NotNull Direction direction, @NotNull String name, @NotNull String alias) {
+    DoorFace(Direction direction, String name, String alias) {
         this.direction = direction;
         this.name = name;
         this.alias = alias;
@@ -109,7 +108,7 @@ public enum DoorFace {
      *
      * @return the Minestom Direction, never null
      */
-    public @NotNull Direction direction() {
+    public Direction direction() {
         return direction;
     }
 
@@ -122,7 +121,7 @@ public enum DoorFace {
      *
      * @return the primary name, never null
      */
-    public @NotNull String getName() {
+    public String getName() {
         return name;
     }
 
@@ -136,7 +135,7 @@ public enum DoorFace {
      *
      * @return the alias name, never null
      */
-    public @NotNull String getAlias() {
+    public String getAlias() {
         return alias;
     }
 
@@ -155,7 +154,7 @@ public enum DoorFace {
      * @return an Optional containing the DoorFace if the id is valid,
      * or empty if the id is out of bounds
      */
-    public static @NotNull Optional<DoorFace> getFace(int id) {
+    public static Optional<DoorFace> getFace(int id) {
         if (id < 0 || id >= VALUES.length) return Optional.empty();
         return Optional.of(VALUES[id]);
     }
@@ -181,7 +180,7 @@ public enum DoorFace {
      * @return an Optional containing the matching DoorFace, or empty if no match is found
      * @throws NullPointerException if the name is null
      */
-    public static @NotNull Optional<DoorFace> getFace(@NotNull String name) {
+    public static Optional<DoorFace> getFace(String name) {
         DoorFace face = null;
         for (int i = 0; i < VALUES.length && face == null; i++) {
             DoorFace current = VALUES[i];

@@ -4,7 +4,6 @@ import net.kyori.adventure.key.Key;
 import net.onelitefeather.coris.component.CorisComponent;
 import net.onelitefeather.coris.shape.Shape;
 import org.jetbrains.annotations.ApiStatus;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
@@ -15,7 +14,7 @@ import java.util.Map;
  * It provides a structure for rooms with a unique identifier, a shape, and a collection of components.
  *
  * @author theEvilReaper
- * @version 1.2.0
+ * @version 1.3.0
  * @since 0.1.0
  */
 @ApiStatus.Experimental
@@ -31,7 +30,7 @@ public class BaseRoom implements Room {
      * @param identifier the unique identifier for the room
      * @param shape      the shape of the room
      */
-    public BaseRoom(@NotNull Key identifier, @NotNull Shape shape) {
+    public BaseRoom(Key identifier, Shape shape) {
         this(identifier, new HashMap<>(), shape);
     }
 
@@ -43,9 +42,9 @@ public class BaseRoom implements Room {
      * @param shape      the shape of the room
      */
     public BaseRoom(
-            @NotNull Key identifier,
-            @NotNull Map<Class<? extends CorisComponent>, CorisComponent> components,
-            @NotNull Shape shape
+            Key identifier,
+            Map<Class<? extends CorisComponent>, CorisComponent> components,
+            Shape shape
     ) {
         this.identifier = identifier;
         this.components = new HashMap<>();
@@ -54,37 +53,37 @@ public class BaseRoom implements Room {
 
 
     @Override
-    public <T extends CorisComponent> void add(@NotNull Class<T> componentClass, @NotNull T component) {
+    public <T extends CorisComponent> void add(Class<T> componentClass, T component) {
         this.components.computeIfAbsent(componentClass, k -> component);
     }
 
     @Override
-    public <T extends CorisComponent> boolean has(@NotNull Class<T> componentClass) {
+    public <T extends CorisComponent> boolean has(Class<T> componentClass) {
         return this.components.containsKey(componentClass);
     }
 
     @Override
-    public <T extends CorisComponent> @Nullable T get(@NotNull Class<T> componentClass) {
+    public <T extends CorisComponent> @Nullable T get(Class<T> componentClass) {
         return componentClass.cast(this.components.get(componentClass));
     }
 
     @Override
-    public <T extends CorisComponent> @Nullable T remove(@NotNull Class<T> componentClass) {
+    public <T extends CorisComponent> @Nullable T remove(Class<T> componentClass) {
         return componentClass.cast(this.components.remove(componentClass));
     }
 
     @Override
-    public @NotNull Key identifier() {
+    public Key identifier() {
         return identifier;
     }
 
     @Override
-    public @NotNull Shape shape() {
+    public Shape shape() {
         return this.shape;
     }
 
     @Override
-    public int compare(@NotNull Key o1, @NotNull Key o2) {
+    public int compare(Key o1, Key o2) {
         return o1.compareTo(o2);
     }
 }
