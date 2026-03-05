@@ -1,6 +1,7 @@
-package net.onelitefeather.coris.shape;
+package net.onelitefeather.coris.shape.intersect;
 
 import net.minestom.server.coordinate.Vec;
+import net.onelitefeather.coris.shape.CuboidShape;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
