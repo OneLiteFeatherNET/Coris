@@ -2,7 +2,6 @@ package net.onelitefeather.coris.shape;
 
 import net.minestom.server.coordinate.Point;
 import net.minestom.server.coordinate.Vec;
-import net.onelitefeather.coris.util.Intersect;
 
 /**
  * The {@link PointShape} represents an implementation of the {@link Shape} interface which describes a single point in a 3D space.
