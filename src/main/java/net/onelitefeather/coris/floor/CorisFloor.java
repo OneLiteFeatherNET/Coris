@@ -122,10 +122,7 @@ public final class CorisFloor<K extends Room> implements Floor<K> {
      */
     @Override
     public void clear() {
-        if (!this.data.isEmpty()) {
-            this.data.clear();
-        }
-        if (this.components.isEmpty()) return;
+        this.data.clear();
         this.components.clear();
     }
 
