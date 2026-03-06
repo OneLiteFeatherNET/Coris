@@ -49,7 +49,7 @@ public abstract non-sealed class BaseDoor implements Door {
         this.face = face;
         this.shape = shape;
         this.animationState = AnimationState.IDLE;
-        this.componentMap = componentMap;
+        this.componentMap = new HashMap<>(componentMap);
     }
 
     /**

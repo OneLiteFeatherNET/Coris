@@ -50,7 +50,7 @@ public final class CorisFloor<K extends Room> implements Floor<K> {
     ) {
         this.identifier = identifier;
         this.data = data;
-        this.components = components;
+        this.components = new HashMap<>(components);
     }
 
     /**
