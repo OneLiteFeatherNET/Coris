@@ -33,7 +33,7 @@ public sealed interface Door extends Componentable permits BaseDoor {
     void open();
 
     /**
-     * Triggers the close logic for the door
+     * Triggers the unlock logic for the door
      */
     void unlock();
 
