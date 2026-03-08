@@ -1,5 +1,6 @@
 package net.onelitefeather.coris.shape;
 
+import net.minestom.server.coordinate.Point;
 import net.minestom.server.coordinate.Vec;
 
 /**
@@ -8,11 +9,14 @@ import net.minestom.server.coordinate.Vec;
  *
  * @param position the position of the point in the 3D space
  * @author theEvilReaper
- * @version 1.3.0
+ * @version 1.4.0
  * @since 0.1.0
  */
 public record PointShape(Vec position) implements Shape {
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int compareTo(Shape o) {
         if (!(o instanceof PointShape(Vec position1))) return -1;
@@ -21,5 +25,21 @@ public record PointShape(Vec position) implements Shape {
         int cmpY = Double.compare(this.position.y(), position1.y());
         if (cmpY != 0) return cmpY;
         return Double.compare(this.position.z(), position1.z());
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean intersect2D(Point position) {
+       return this.intersect3D(position);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean intersect3D(Point position) {
+        return this.position.equals(position);
     }
 }

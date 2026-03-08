@@ -1,5 +1,6 @@
 package net.onelitefeather.coris.shape;
 
+import net.minestom.server.coordinate.Point;
 import net.minestom.server.coordinate.Vec;
 import org.jetbrains.annotations.ApiStatus;
 
@@ -9,7 +10,7 @@ import org.jetbrains.annotations.ApiStatus;
  * @param start the starting point of the cuboid
  * @param end   the ending point of the cuboid
  * @author theEvilReaper
- * @version 1.3.0
+ * @version 1.4.0
  * @since 0.1.0
  */
 @ApiStatus.Experimental
@@ -30,6 +31,9 @@ public record CuboidShape(Vec start, Vec end) implements Shape {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int compareTo(Shape o) {
         if (!(o instanceof CuboidShape(Vec start1, Vec end1))) {
@@ -38,6 +42,25 @@ public record CuboidShape(Vec start, Vec end) implements Shape {
         int cmpStart = compareVec(this.start, start1);
         if (cmpStart != 0) return cmpStart;
         return compareVec(this.end, end1);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean intersect2D(Point position) {
+        return position.blockX() >= start.blockX() && position.blockX() <= end.blockX() &&
+                position.blockZ() >= start.blockZ() && position.blockZ() <= end.blockZ();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean intersect3D(Point position) {
+        return position.blockX() >= start.blockX() && position.blockX() <= end.blockX() &&
+                position.blockY() >= start.blockY() && position.blockY() <= end.blockY() &&
+                position.blockZ() >= start.blockZ() && position.blockZ() <= end.blockZ();
     }
 
     /**
