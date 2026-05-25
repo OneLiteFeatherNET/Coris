@@ -26,3 +26,9 @@ implementation("net.onelitefeather:coris:<version>")
 ## Contribution
 
 If you want to contribute to this project, please follow the guidelines in the [CONTRIBUTING.md](CONTRIBUTING.md) file.
+
+### Support
+
+We develop these projects in our free time.
+
+If you find them useful and would like to support us, you can do so via [OpenCollective](https://opencollective.com/onelitefeather)
