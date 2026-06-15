@@ -1,5 +1,6 @@
 package net.onelitefeather.coris.floor.event;
 
+import net.minestom.server.event.Event;
 import net.onelitefeather.coris.floor.Floor;
 import net.onelitefeather.coris.room.Room;
 
@@ -13,5 +14,5 @@ import net.onelitefeather.coris.room.Room;
  * @since 0.1.0
  */
 @SuppressWarnings("java:S6206")
-public record FloorRemoveEvent<T extends Floor<? extends Room>>(T floor) {
+public record FloorRemoveEvent<T extends Floor<? extends Room>>(T floor) implements Event {
 }
