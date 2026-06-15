@@ -32,7 +32,7 @@ public record PointShape(Vec position) implements Shape {
      */
     @Override
     public boolean intersect2D(Point position) {
-       return this.intersect3D(position);
+        return this.position.x() == position.x() && this.position.z() == position.z();
     }
 
     /**

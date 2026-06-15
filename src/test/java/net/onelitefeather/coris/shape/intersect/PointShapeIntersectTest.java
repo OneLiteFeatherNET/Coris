@@ -14,7 +14,7 @@ class PointShapeIntersectTest {
 
     private static final PointShape SHAPE = new PointShape(new Vec(2, 2, 2));
 
-    static Stream<Arguments> intersectProvider() {
+    static Stream<Arguments> intersect3DProvider() {
         return Stream.of(
                 Arguments.of(new Vec(2, 2, 2), true, "Exact match"),
                 Arguments.of(new Vec(3, 2, 2), false, "X mismatch"),
@@ -23,14 +23,23 @@ class PointShapeIntersectTest {
         );
     }
 
+    static Stream<Arguments> intersect2DProvider() {
+        return Stream.of(
+                Arguments.of(new Vec(2, 2, 2), true, "Exact match"),
+                Arguments.of(new Vec(3, 2, 2), false, "X mismatch"),
+                Arguments.of(new Vec(2, 3, 2), true, "Y ignored"),
+                Arguments.of(new Vec(2, 2, 3), false, "Z mismatch")
+        );
+    }
+
     @ParameterizedTest(name = "{2}")
-    @MethodSource("intersectProvider")
+    @MethodSource("intersect3DProvider")
     void testIntersect3D(Vec position, boolean expected, String description) {
         assertEquals(expected, SHAPE.intersect3D(position));
     }
 
     @ParameterizedTest(name = "{2}")
-    @MethodSource("intersectProvider")
+    @MethodSource("intersect2DProvider")
     void testIntersect2D(Vec position, boolean expected, String description) {
         assertEquals(expected, SHAPE.intersect2D(position));
     }
