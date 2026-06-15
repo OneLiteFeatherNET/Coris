@@ -2,7 +2,9 @@ package net.onelitefeather.coris.floor;
 
 import net.kyori.adventure.key.Key;
 import net.onelitefeather.coris.component.Componentable;
+import net.onelitefeather.coris.shape.Shape;
 import org.jetbrains.annotations.ApiStatus;
+import org.jetbrains.annotations.Nullable;
 import org.jetbrains.annotations.UnmodifiableView;
 
 import java.util.Map;
@@ -13,7 +15,7 @@ import java.util.Map;
  *
  * @param <T> the type of objects that the floor can hold, typically extending from a class.
  * @author theEvilReaper
- * @version 1.1.0
+ * @version 1.2.0
  * @since 0.1.0
  */
 @ApiStatus.Experimental
@@ -53,6 +55,13 @@ public interface Floor<T> extends Componentable {
      * For example, it could remove all objects or reset the floor to its initial state.
      */
     void clear();
+
+    /**
+     * Returns the shape of the floor.
+     *
+     * @return the shape
+     */
+    @Nullable Shape shape();
 
     /**
      * Returns an unmodifiable view of the data.

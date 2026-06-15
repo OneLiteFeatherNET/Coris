@@ -3,6 +3,7 @@ package net.onelitefeather.coris.floor;
 import net.kyori.adventure.key.Key;
 import net.onelitefeather.coris.component.CorisComponent;
 import net.onelitefeather.coris.room.Room;
+import net.onelitefeather.coris.shape.Shape;
 import org.jetbrains.annotations.Nullable;
 import org.jetbrains.annotations.UnmodifiableView;
 
@@ -24,20 +25,43 @@ public final class CorisFloor<K extends Room> implements Floor<K> {
     private final Key identifier;
     private final Map<Key, K> data;
     private final Map<Class<? extends CorisComponent>, CorisComponent> components;
+    private final @Nullable Shape shape;
 
     /**
-     * Creates a new floor with the given identifier.
-     *
-     * @param identifier the identifier of the floor
+     * Master constructor that fully initializes the floor.
+     * All other constructors delegate to this one.
      */
-    public CorisFloor(Key identifier) {
+    public CorisFloor(
+            Key identifier,
+            Map<Key, K> data,
+            Map<Class<? extends CorisComponent>, CorisComponent> components,
+            @Nullable Shape shape
+    ) {
         this.identifier = identifier;
-        this.data = new HashMap<>();
-        this.components = new HashMap<>();
+        this.data = data;
+        this.components = new HashMap<>(components);
+        this.shape = shape;
     }
 
     /**
-     * Creates a new floor with the given identifier, data, and components.
+     * Creates a new empty floor with the given identifier and shape.
+     *
+     * @param identifier the identifier of the floor
+     * @param shape      the shape of the floor
+     */
+    public CorisFloor(Key identifier, Shape shape) {
+        this(identifier, new HashMap<>(), new HashMap<>(), shape);
+    }
+
+    /**
+     * Creates a new empty floor with the given identifier.
+     */
+    public CorisFloor(Key identifier) {
+        this(identifier, new HashMap<>(), new HashMap<>(), null);
+    }
+
+    /**
+     * Creates a new floor with the given identifier, data, and components, but without a shape.
      *
      * @param identifier the identifier of the floor
      * @param data       the data of the floor
@@ -48,9 +72,7 @@ public final class CorisFloor<K extends Room> implements Floor<K> {
             Map<Key, K> data,
             Map<Class<? extends CorisComponent>, CorisComponent> components
     ) {
-        this.identifier = identifier;
-        this.data = data;
-        this.components = new HashMap<>(components);
+        this(identifier, data, components, null);
     }
 
     /**
@@ -115,6 +137,14 @@ public final class CorisFloor<K extends Room> implements Floor<K> {
     @Override
     public Key identifier() {
         return this.identifier;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public @Nullable Shape shape() {
+        return this.shape;
     }
 
     /**

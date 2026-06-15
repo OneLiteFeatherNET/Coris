@@ -1,9 +1,9 @@
 package net.onelitefeather.coris.floor;
 
 import net.kyori.adventure.key.Key;
+import net.minestom.server.coordinate.Point;
 import net.onelitefeather.coris.room.Room;
 import org.jetbrains.annotations.ApiStatus;
-import org.jetbrains.annotations.Nullable;
 import org.jetbrains.annotations.UnmodifiableView;
 
 import java.util.Comparator;
@@ -15,11 +15,11 @@ import java.util.Optional;
  *
  * @param <T> the type of floor that the registry can hold, typically extending from {@link Floor}.
  * @author theEvilReaper
- * @version 1.1.0
+ * @version 1.2.0
  * @since 0.1.0
  */
 @ApiStatus.Experimental
-public interface FloorRegistry<T extends Floor<? extends Room>> {
+public interface FloorRegistry<T extends Floor<Room>> {
 
     /**
      * Adds a new floor to the registry.
@@ -47,7 +47,7 @@ public interface FloorRegistry<T extends Floor<? extends Room>> {
      * @param id the id of the floor
      * @return the floor
      */
-    Optional<@Nullable T> get(Key id);
+    Optional<T> get(Key id);
 
     /**
      * Returns an unmodifiable view of the floors.
@@ -65,4 +65,26 @@ public interface FloorRegistry<T extends Floor<? extends Room>> {
      */
     @UnmodifiableView
     Map<Key, T> getFloors(Comparator<T> comparator);
+
+    /**
+     * Returns the floor containing the specified coordinate point, if any.
+     *
+     * @param point the coordinate point to check
+     * @return an Optional containing the floor, or empty if not inside any floor
+     */
+    Optional<T> getFloorAt(Point point);
+
+    /**
+     * Finds the exact room containing the specified coordinate point across all registered floors.
+     *
+     * @param point the coordinate point to check
+     * @return an Optional containing the room, or empty if not inside any room
+     */
+    default Optional<Room> getRoomAt(Point point) {
+        return getFloorAt(point).flatMap(floor ->
+                floor.getData().values().stream()
+                        .filter(room -> room.shape().intersect3D(point))
+                        .findFirst()
+        );
+    }
 }
