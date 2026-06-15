@@ -16,4 +16,14 @@ class RoomTest {
         assertEquals(Key.key("test_room"), room.identifier());
         assertInstanceOf(CuboidShape.class, room.shape());
     }
+
+    @Test
+    void testRoomComparison() {
+        Room roomA = new TestRoom(Key.key("coris:room_a"));
+        Room roomB = new TestRoom(Key.key("coris:room_b"));
+
+        assertTrue(roomA.compareTo(roomB) < 0, "Room A should be less than Room B based on alphabetical key sorting");
+        assertTrue(roomB.compareTo(roomA) > 0, "Room B should be greater than Room A");
+        assertEquals(0, roomA.compareTo(roomA), "A room compared with itself should return 0");
+    }
 }

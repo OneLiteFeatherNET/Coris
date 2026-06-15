@@ -5,8 +5,6 @@ import net.onelitefeather.coris.component.Componentable;
 import net.onelitefeather.coris.shape.Shape;
 import org.jetbrains.annotations.ApiStatus;
 
-import java.util.Comparator;
-
 /**
  * The {@link Room} interface represents a room which describes a specific area.
  * If the area is a room in a world or building is up to the implementation.
@@ -24,7 +22,7 @@ import java.util.Comparator;
  * @since 0.1.0
  */
 @ApiStatus.Experimental
-public interface Room extends Componentable, Comparator<Key> {
+public interface Room extends Componentable, Comparable<Room> {
 
     /**
      * Returns the identifier of the room.

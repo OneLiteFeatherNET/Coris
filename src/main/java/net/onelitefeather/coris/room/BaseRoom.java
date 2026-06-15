@@ -99,11 +99,8 @@ public class BaseRoom implements Room {
         return this.shape;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public int compare(Key o1, Key o2) {
-        return o1.compareTo(o2);
+    public int compareTo(Room other) {
+        return this.identifier.compareTo(other.identifier());
     }
 }
