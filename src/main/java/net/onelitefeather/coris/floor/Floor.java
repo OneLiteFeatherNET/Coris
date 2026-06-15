@@ -15,7 +15,7 @@ import java.util.Map;
  *
  * @param <T> the type of objects that the floor can hold, typically extending from a class.
  * @author theEvilReaper
- * @version 1.1.0
+ * @version 1.2.0
  * @since 0.1.0
  */
 @ApiStatus.Experimental
