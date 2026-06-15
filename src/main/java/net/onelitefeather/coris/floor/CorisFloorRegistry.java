@@ -1,14 +1,16 @@
 package net.onelitefeather.coris.floor;
 
 import net.kyori.adventure.key.Key;
+import net.minestom.server.coordinate.Point;
 import net.onelitefeather.coris.room.Room;
-import org.jetbrains.annotations.Nullable;
 import org.jetbrains.annotations.UnmodifiableView;
 
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -26,7 +28,7 @@ import java.util.stream.Collectors;
  * </p>
  *
  * @param <T> the type of floor managed by this registry, must extend {@link Floor}
- *           with a room type that extends {@link Room}
+ *           with a room type that is {@link Room}
  * @author theEvilReaper
  * @version 1.1.0
  * @since 0.1.0
@@ -34,7 +36,7 @@ import java.util.stream.Collectors;
  * @see Floor
  * @see Room
  */
-public class CorisFloorRegistry<T extends Floor<? extends Room>> implements FloorRegistry<T> {
+public class CorisFloorRegistry<T extends Floor<Room>> implements FloorRegistry<T> {
 
     private final Map<Key, T> floors;
 
@@ -74,7 +76,7 @@ public class CorisFloorRegistry<T extends Floor<? extends Room>> implements Floo
      * {@inheritDoc}
      */
     @Override
-    public Optional<@Nullable T> get(Key id) {
+    public Optional<T> get(Key id) {
         return Optional.ofNullable(this.floors.get(id));
     }
 
@@ -93,6 +95,16 @@ public class CorisFloorRegistry<T extends Floor<? extends Room>> implements Floo
     public @UnmodifiableView Map<Key, T> getFloors(Comparator<T> comparator) {
         return this.floors.entrySet().stream()
                 .sorted(Map.Entry.comparingByValue(comparator))
-                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, HashMap::new));
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Optional<T> getFloorAt(Point point) {
+        return this.floors.values().stream()
+                .filter(floor -> Objects.requireNonNull(floor.shape()).intersect3D(point))
+                .findFirst();
     }
 }
