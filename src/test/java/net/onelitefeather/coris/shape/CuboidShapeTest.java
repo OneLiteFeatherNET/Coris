@@ -16,6 +16,61 @@ class CuboidShapeTest {
         );
     }
 
+    @Test
+    void testCoordinateNormalization() {
+        // Create a cuboid with reversed coordinates (start is max, end is min)
+        Vec highPoint = new Vec(5, 6, 7);
+        Vec lowPoint = new Vec(0, 1, 2);
+
+        CuboidShape shape = new CuboidShape(highPoint, lowPoint);
+
+        // Verify that start is normalized to the minimum coordinates
+        assertEquals(0, shape.start().blockX());
+        assertEquals(1, shape.start().blockY());
+        assertEquals(2, shape.start().blockZ());
+
+        // Verify that end is normalized to the maximum coordinates
+        assertEquals(5, shape.end().blockX());
+        assertEquals(6, shape.end().blockY());
+        assertEquals(7, shape.end().blockZ());
+    }
+
+    @Test
+    void testIntersect3D() {
+        CuboidShape shape = new CuboidShape(new Vec(0, 0, 0), new Vec(4, 4, 4));
+
+        // 1. Point fully inside
+        assertTrue(shape.intersect3D(new Vec(2, 2, 2)));
+
+        // 2. Point exactly on the boundary
+        assertTrue(shape.intersect3D(new Vec(0, 2, 4)));
+
+        // 3. Point outside on X
+        assertFalse(shape.intersect3D(new Vec(-1, 2, 2)));
+        assertFalse(shape.intersect3D(new Vec(5, 2, 2)));
+
+        // 4. Point outside on Y
+        assertFalse(shape.intersect3D(new Vec(2, -1, 2)));
+        assertFalse(shape.intersect3D(new Vec(2, 5, 2)));
+
+        // 5. Point outside on Z
+        assertFalse(shape.intersect3D(new Vec(2, 2, -1)));
+        assertFalse(shape.intersect3D(new Vec(2, 2, 5)));
+    }
+
+    @Test
+    void testIntersect2D() {
+        // Y boundaries are ignored in 2D intersection
+        CuboidShape shape = new CuboidShape(new Vec(0, 0, 0), new Vec(4, 4, 4));
+
+        // 1. Point inside X/Z, but outside Y-bounds (should still intersect in 2D)
+        assertTrue(shape.intersect2D(new Vec(2, 10, 2)));
+        assertTrue(shape.intersect2D(new Vec(2, -5, 2)));
+
+        // 2. Point outside X/Z bounds
+        assertFalse(shape.intersect2D(new Vec(-1, 2, 2)));
+        assertFalse(shape.intersect2D(new Vec(2, 2, 5)));
+    }
 
     @Test
     void testCompareTo() {

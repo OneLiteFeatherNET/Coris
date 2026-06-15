@@ -25,10 +25,24 @@ public record CuboidShape(Vec start, Vec end) implements Shape {
      */
     public CuboidShape {
         double distance = start.distanceSquared(end);
-
         if (distance <= 0) {
             throw new IllegalArgumentException("The distance between the start and end point must be greater than 0");
         }
+
+        // Normalize coordinates and assign back to the parameter variables
+        Vec min = new Vec(
+                Math.min(start.x(), end.x()),
+                Math.min(start.y(), end.y()),
+                Math.min(start.z(), end.z())
+        );
+        Vec max = new Vec(
+                Math.max(start.x(), end.x()),
+                Math.max(start.y(), end.y()),
+                Math.max(start.z(), end.z())
+        );
+
+        start = min;
+        end = max;
     }
 
     /**
