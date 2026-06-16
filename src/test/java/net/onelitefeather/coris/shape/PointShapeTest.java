@@ -24,4 +24,12 @@ class PointShapeTest {
         assertEquals(0, pointShape1.compareTo(pointShape2), "Point shapes with the same position should be equal");
         assertTrue(pointShape1.compareTo(pointShape3) < 0, "Point shape with lower coordinates should be less than one with higher coordinates");
     }
+
+    @Test
+    void testMinMaxGetter() {
+        PointShape pointShape = new PointShape(new Vec(5, 5, 5));
+        assertEquals(new Vec(5, 5, 5), pointShape.min());
+        assertEquals(new Vec(5, 5, 5), pointShape.max());
+        assertEquals(pointShape.max(), pointShape.min(), "Min and max should be equal for a point shape");
+    }
 }
