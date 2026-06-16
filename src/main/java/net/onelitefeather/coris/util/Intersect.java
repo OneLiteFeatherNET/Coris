@@ -17,13 +17,6 @@ public interface Intersect<T extends Point> {
      * @param position the position to check
      * @return true if the point intersects with the shape, false otherwise
      */
-    boolean intersect2D(T position);
+    boolean intersect(T position);
 
-    /**
-     * Checks if the given point intersects with the shape in 3D.
-     *
-     * @param position the position to check
-     * @return true if the point intersects with the shape, false otherwise
-     */
-    boolean intersect3D(T position);
 }
