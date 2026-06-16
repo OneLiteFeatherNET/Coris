@@ -10,9 +10,22 @@ import org.jetbrains.annotations.ApiStatus;
  * The shape is a 2D or 3D representation of the area.
  *
  * @author theEvilReaper
- * @version 1.3.0
+ * @version 1.4.0
  * @since 0.1.0
  */
 @ApiStatus.Experimental
 public interface Shape extends Comparable<Shape>, Intersect<Point> {
+
+    /**
+     * Returns the minimum point of the shape.
+     *
+     * @return minimum point
+     */
+    Point min();
+
+    /**
+     * Returns the maximum point of the shape.
+     * @return maximum point
+     */
+    Point max();
 }
