@@ -9,7 +9,7 @@ import net.minestom.server.coordinate.Vec;
  *
  * @param position the position of the point in the 3D space
  * @author theEvilReaper
- * @version 1.4.0
+ * @version 1.4.1
  * @since 0.1.0
  */
 public record PointShape(Vec position) implements Shape {
@@ -41,5 +41,21 @@ public record PointShape(Vec position) implements Shape {
     @Override
     public boolean intersect3D(Point position) {
         return this.position.equals(position);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Point min() {
+        return this.max();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Point max() {
+        return this.position;
     }
 }

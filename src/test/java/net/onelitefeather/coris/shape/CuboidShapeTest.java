@@ -82,4 +82,44 @@ class CuboidShapeTest {
         assertEquals(0, shape1.compareTo(shape2), "Shapes with the same coordinates should be equal");
         assertTrue(shape1.compareTo(shape3) < 0, "Shape with lower coordinates should be less than one with higher coordinates");
     }
+
+    @Test
+    void testMinMaxAreNormalizedCorrectly() {
+        Vec a = new Vec(5, 1, 7);
+        Vec b = new Vec(0, 6, 2);
+
+        CuboidShape shape = new CuboidShape(a, b);
+
+        assertEquals(0, shape.min().blockX());
+        assertEquals(1, shape.min().blockY());
+        assertEquals(2, shape.min().blockZ());
+
+        assertEquals(5, shape.max().blockX());
+        assertEquals(6, shape.max().blockY());
+        assertEquals(7, shape.max().blockZ());
+    }
+
+    @Test
+    void testMinMaxAreStable() {
+        Vec a = new Vec(3, 3, 3);
+        Vec b = new Vec(10, 10, 10);
+
+        CuboidShape shape = new CuboidShape(a, b);
+
+        assertEquals(shape.min(), shape.min());
+        assertEquals(shape.max(), shape.max());
+    }
+
+    @Test
+    void testMinMaxSymmetry() {
+        Vec a = new Vec(8, 2, 5);
+        Vec b = new Vec(1, 9, 3);
+
+        CuboidShape shape = new CuboidShape(a, b);
+
+        // min must never exceed max
+        assertTrue(shape.min().blockX() <= shape.max().blockX());
+        assertTrue(shape.min().blockY() <= shape.max().blockY());
+        assertTrue(shape.min().blockZ() <= shape.max().blockZ());
+    }
 }
