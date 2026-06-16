@@ -36,40 +36,26 @@ class CuboidShapeTest {
     }
 
     @Test
-    void testIntersect3D() {
+    void testIntersect() {
         CuboidShape shape = new CuboidShape(new Vec(0, 0, 0), new Vec(4, 4, 4));
 
-        // 1. Point fully inside
-        assertTrue(shape.intersect3D(new Vec(2, 2, 2)));
+        // inside
+        assertTrue(shape.intersect(new Vec(2, 2, 2)));
 
-        // 2. Point exactly on the boundary
-        assertTrue(shape.intersect3D(new Vec(0, 2, 4)));
+        // boundary
+        assertTrue(shape.intersect(new Vec(0, 2, 4)));
 
-        // 3. Point outside on X
-        assertFalse(shape.intersect3D(new Vec(-1, 2, 2)));
-        assertFalse(shape.intersect3D(new Vec(5, 2, 2)));
+        // outside X
+        assertFalse(shape.intersect(new Vec(-1, 2, 2)));
+        assertFalse(shape.intersect(new Vec(5, 2, 2)));
 
-        // 4. Point outside on Y
-        assertFalse(shape.intersect3D(new Vec(2, -1, 2)));
-        assertFalse(shape.intersect3D(new Vec(2, 5, 2)));
+        // outside Y
+        assertFalse(shape.intersect(new Vec(2, -1, 2)));
+        assertFalse(shape.intersect(new Vec(2, 5, 2)));
 
-        // 5. Point outside on Z
-        assertFalse(shape.intersect3D(new Vec(2, 2, -1)));
-        assertFalse(shape.intersect3D(new Vec(2, 2, 5)));
-    }
-
-    @Test
-    void testIntersect2D() {
-        // Y boundaries are ignored in 2D intersection
-        CuboidShape shape = new CuboidShape(new Vec(0, 0, 0), new Vec(4, 4, 4));
-
-        // 1. Point inside X/Z, but outside Y-bounds (should still intersect in 2D)
-        assertTrue(shape.intersect2D(new Vec(2, 10, 2)));
-        assertTrue(shape.intersect2D(new Vec(2, -5, 2)));
-
-        // 2. Point outside X/Z bounds
-        assertFalse(shape.intersect2D(new Vec(-1, 2, 2)));
-        assertFalse(shape.intersect2D(new Vec(2, 2, 5)));
+        // outside Z
+        assertFalse(shape.intersect(new Vec(2, 2, -1)));
+        assertFalse(shape.intersect(new Vec(2, 2, 5)));
     }
 
     @Test

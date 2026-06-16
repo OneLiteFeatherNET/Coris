@@ -1,5 +1,6 @@
 package net.onelitefeather.coris.shape.intersect;
 
+import net.minestom.server.coordinate.Point;
 import net.minestom.server.coordinate.Vec;
 import net.onelitefeather.coris.shape.CuboidShape;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -12,9 +13,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class CuboidShapeIntersectTest {
 
-    private static final CuboidShape SHAPE = new CuboidShape(new Vec(0, 0, 0), new Vec(5, 5, 5));
+    private static final CuboidShape SHAPE =
+            new CuboidShape(new Vec(0, 0, 0), new Vec(5, 5, 5));
 
-    static Stream<Arguments> intersect3DProvider() {
+    static Stream<Arguments> intersectProvider() {
         return Stream.of(
                 Arguments.of(new Vec(2, 2, 2), true, "Inside shape"),
                 Arguments.of(new Vec(0, 0, 0), true, "On start border"),
@@ -25,27 +27,9 @@ class CuboidShapeIntersectTest {
         );
     }
 
-    static Stream<Arguments> intersect2DProvider() {
-        return Stream.of(
-                Arguments.of(new Vec(2, 99, 2), true, "Inside, Y ignored"),
-                Arguments.of(new Vec(0, 0, 0), true, "On start border"),
-                Arguments.of(new Vec(5, 0, 5), true, "On end border XZ"),
-                Arguments.of(new Vec(6, 2, 2), false, "Outside X"),
-                Arguments.of(new Vec(2, 2, 6), false, "Outside Z"),
-                Arguments.of(new Vec(2, 999, 2), true, "Large Y ignored"),
-                Arguments.of(new Vec(2, -999, 2), true, "Negative Y ignored")
-        );
-    }
-
     @ParameterizedTest(name = "{2}")
-    @MethodSource("intersect3DProvider")
-    void testIntersect3D(Vec position, boolean expected, String description) {
-        assertEquals(expected, SHAPE.intersect3D(position));
-    }
-
-    @ParameterizedTest(name = "{2}")
-    @MethodSource("intersect2DProvider")
-    void testIntersect2D(Vec position, boolean expected, String description) {
-        assertEquals(expected, SHAPE.intersect2D(position));
+    @MethodSource("intersectProvider")
+    void testIntersect(Point position, boolean expected, String description) {
+        assertEquals(expected, SHAPE.intersect(position));
     }
 }
