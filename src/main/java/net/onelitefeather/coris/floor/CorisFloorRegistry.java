@@ -104,7 +104,7 @@ public class CorisFloorRegistry<T extends Floor<Room>> implements FloorRegistry<
     @Override
     public Optional<T> getFloorAt(Point point) {
         return this.floors.values().stream()
-                .filter(floor -> Objects.requireNonNull(floor.shape()).intersect3D(point))
+                .filter(floor -> Objects.requireNonNull(floor.shape()).intersect(point))
                 .findFirst();
     }
 }

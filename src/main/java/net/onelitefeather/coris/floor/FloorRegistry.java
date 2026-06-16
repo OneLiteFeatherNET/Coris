@@ -83,7 +83,7 @@ public interface FloorRegistry<T extends Floor<Room>> {
     default Optional<Room> getRoomAt(Point point) {
         return getFloorAt(point).flatMap(floor ->
                 floor.getData().values().stream()
-                        .filter(room -> room.shape().intersect3D(point))
+                        .filter(room -> room.shape().intersect(point))
                         .findFirst()
         );
     }
