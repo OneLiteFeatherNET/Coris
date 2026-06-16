@@ -10,7 +10,7 @@ import org.jetbrains.annotations.ApiStatus;
  * @param start the starting point of the cuboid
  * @param end   the ending point of the cuboid
  * @author theEvilReaper
- * @version 1.4.0
+ * @version 1.5.0
  * @since 0.1.0
  */
 @ApiStatus.Experimental
@@ -78,19 +78,10 @@ public record CuboidShape(Vec start, Vec end) implements Shape {
      * {@inheritDoc}
      */
     @Override
-    public boolean intersect2D(Point position) {
-        return position.blockX() >= start.blockX() && position.blockX() <= end.blockX() &&
-                position.blockZ() >= start.blockZ() && position.blockZ() <= end.blockZ();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public boolean intersect3D(Point position) {
-        return position.blockX() >= start.blockX() && position.blockX() <= end.blockX() &&
-                position.blockY() >= start.blockY() && position.blockY() <= end.blockY() &&
-                position.blockZ() >= start.blockZ() && position.blockZ() <= end.blockZ();
+    public boolean intersect(Point position) {
+        return position.blockX() >= start.blockX() && position.blockX() <= end.blockX()
+                && position.blockY() >= start.blockY() && position.blockY() <= end.blockY()
+                && position.blockZ() >= start.blockZ() && position.blockZ() <= end.blockZ();
     }
 
     /**
