@@ -51,6 +51,19 @@ class FloorTest {
     }
 
     @Test
+    void testFloorAddOverwritesExistingRoomAtSameKey() {
+        Key roomKey = Key.key("overwrite_room_key");
+        Room original = new TestRoom(roomKey);
+        Room replacement = new TestRoom(roomKey);
+
+        floor.add(roomKey, original);
+        floor.add(roomKey, replacement);
+
+        Room stored = floor.getData().get(roomKey);
+        assertSame(replacement, stored, "add() should replace the room already stored at the same key");
+    }
+
+    @Test
     void testIdentifier() {
         UUID randomId = UUID.randomUUID();
         assertNotEquals(floor.identifier(), Key.key(randomId.toString()));

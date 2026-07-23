@@ -62,4 +62,19 @@ class DoorTest {
         assertNotNull(door.remove(TestComponent.class));
         assertFalse(door.has(TestComponent.class));
     }
+
+    @Test
+    void testDoorComponentAddOverwritesExisting() {
+        Door door = new TestDoor(key, DoorFace.NORTH, new CuboidShape(Vec.ZERO, new Vec(1, 1, 1)));
+
+        TestComponent original = new TestComponent("original");
+        TestComponent replacement = new TestComponent("replacement");
+
+        door.add(TestComponent.class, original);
+        door.add(TestComponent.class, replacement);
+
+        TestComponent retrieved = door.get(TestComponent.class);
+        assertNotNull(retrieved);
+        assertEquals("replacement", retrieved.data());
+    }
 }

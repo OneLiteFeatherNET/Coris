@@ -33,4 +33,19 @@ class CorisFloorComponentTest {
         // Verify the component is no longer present
         assertFalse(floor.has(TestComponent.class));
     }
+
+    @Test
+    void testComponentAddOverwritesExisting() {
+        CorisFloor<Room> floor = new CorisFloor<>(Key.key("test_floor_component_overwrite"));
+
+        TestComponent original = new TestComponent("original");
+        TestComponent replacement = new TestComponent("replacement");
+
+        floor.add(TestComponent.class, original);
+        floor.add(TestComponent.class, replacement);
+
+        TestComponent fetchedComponent = floor.get(TestComponent.class);
+        assertNotNull(fetchedComponent);
+        assertEquals("replacement", fetchedComponent.data());
+    }
 }
