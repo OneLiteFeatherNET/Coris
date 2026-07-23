@@ -8,6 +8,7 @@ import net.onelitefeather.coris.shape.Shape;
 import org.jetbrains.annotations.Nullable;
 import org.jetbrains.annotations.UnmodifiableView;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -39,7 +40,7 @@ public final class CorisFloor<K extends Room> implements Floor<K> {
             @Nullable Shape shape
     ) {
         this.identifier = identifier;
-        this.data = data;
+        this.data = new HashMap<>(data);
         this.components = new ComponentContainer(components);
         this.shape = shape;
     }
@@ -174,6 +175,6 @@ public final class CorisFloor<K extends Room> implements Floor<K> {
      */
     @Override
     public @UnmodifiableView Map<Key, K> getData() {
-        return Map.copyOf(this.data);
+        return Collections.unmodifiableMap(this.data);
     }
 }
