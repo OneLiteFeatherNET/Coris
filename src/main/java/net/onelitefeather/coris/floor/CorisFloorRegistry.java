@@ -10,7 +10,6 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -104,7 +103,8 @@ public class CorisFloorRegistry<T extends Floor<Room>> implements FloorRegistry<
     @Override
     public Optional<T> getFloorAt(Point point) {
         return this.floors.values().stream()
-                .filter(floor -> Objects.requireNonNull(floor.shape()).intersect(point))
+                .filter(floor -> floor.shape() != null)
+                .filter(floor -> floor.shape().intersect(point))
                 .findFirst();
     }
 }
