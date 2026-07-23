@@ -1,6 +1,7 @@
 package net.onelitefeather.coris.room;
 
 import net.kyori.adventure.key.Key;
+import net.onelitefeather.coris.component.ComponentContainer;
 import net.onelitefeather.coris.component.CorisComponent;
 import net.onelitefeather.coris.shape.Shape;
 import org.jetbrains.annotations.ApiStatus;
@@ -14,14 +15,14 @@ import java.util.Map;
  * It provides a structure for rooms with a unique identifier, a shape, and a collection of components.
  *
  * @author theEvilReaper
- * @version 1.4.1
+ * @version 1.4.2
  * @since 0.1.0
  */
 @ApiStatus.Experimental
 public class BaseRoom implements Room {
 
     private final Key identifier;
-    private final Map<Class<? extends CorisComponent>, CorisComponent> components;
+    private final ComponentContainer components;
     private final Shape shape;
 
     /**
@@ -47,7 +48,7 @@ public class BaseRoom implements Room {
             Shape shape
     ) {
         this.identifier = identifier;
-        this.components = new HashMap<>(components);
+        this.components = new ComponentContainer(components);
         this.shape = shape;
     }
 
@@ -56,7 +57,7 @@ public class BaseRoom implements Room {
      */
     @Override
     public <T extends CorisComponent> void add(Class<T> componentClass, T component) {
-        this.components.put(componentClass, component);
+        this.components.add(componentClass, component);
     }
 
     /**
@@ -64,7 +65,7 @@ public class BaseRoom implements Room {
      */
     @Override
     public <T extends CorisComponent> boolean has(Class<T> componentClass) {
-        return this.components.containsKey(componentClass);
+        return this.components.has(componentClass);
     }
 
     /**
@@ -72,7 +73,7 @@ public class BaseRoom implements Room {
      */
     @Override
     public <T extends CorisComponent> @Nullable T get(Class<T> componentClass) {
-        return componentClass.cast(this.components.get(componentClass));
+        return this.components.get(componentClass);
     }
 
     /**
@@ -80,7 +81,7 @@ public class BaseRoom implements Room {
      */
     @Override
     public <T extends CorisComponent> @Nullable T remove(Class<T> componentClass) {
-        return componentClass.cast(this.components.remove(componentClass));
+        return this.components.remove(componentClass);
     }
 
     /**

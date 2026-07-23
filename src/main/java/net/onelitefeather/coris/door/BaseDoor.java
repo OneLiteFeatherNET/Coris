@@ -1,6 +1,7 @@
 package net.onelitefeather.coris.door;
 
 import net.kyori.adventure.key.Key;
+import net.onelitefeather.coris.component.ComponentContainer;
 import net.onelitefeather.coris.component.CorisComponent;
 import net.onelitefeather.coris.shape.Shape;
 import org.jetbrains.annotations.Nullable;
@@ -15,7 +16,7 @@ import java.util.UUID;
  * It provides a base implementation for doors in the system, including properties to handle different states and characteristics of a door.
  *
  * @author theEvilReaper
- * @version 1.2.0
+ * @version 1.2.1
  * @since 0.1.0
  */
 public abstract non-sealed class BaseDoor implements Door {
@@ -26,7 +27,7 @@ public abstract non-sealed class BaseDoor implements Door {
     protected final Shape shape;
     protected AnimationState animationState;
 
-    private final Map<Class<? extends CorisComponent>, CorisComponent> componentMap;
+    private final ComponentContainer components;
 
     /**
      * Creates a new instance from the door class with the given values.
@@ -49,7 +50,7 @@ public abstract non-sealed class BaseDoor implements Door {
         this.face = face;
         this.shape = shape;
         this.animationState = AnimationState.IDLE;
-        this.componentMap = new HashMap<>(componentMap);
+        this.components = new ComponentContainer(componentMap);
     }
 
     /**
@@ -68,7 +69,7 @@ public abstract non-sealed class BaseDoor implements Door {
      */
     @Override
     public <T extends CorisComponent> void add(Class<T> componentClass, T component) {
-        this.componentMap.put(componentClass, component);
+        this.components.add(componentClass, component);
     }
 
     /**
@@ -76,7 +77,7 @@ public abstract non-sealed class BaseDoor implements Door {
      */
     @Override
     public <T extends CorisComponent> boolean has(Class<T> componentClass) {
-        return this.componentMap.containsKey(componentClass);
+        return this.components.has(componentClass);
     }
 
     /**
@@ -84,7 +85,7 @@ public abstract non-sealed class BaseDoor implements Door {
      */
     @Override
     public <T extends CorisComponent> @Nullable T get(Class<T> componentClass) {
-        return componentClass.cast(this.componentMap.get(componentClass));
+        return this.components.get(componentClass);
     }
 
     /**
@@ -92,7 +93,7 @@ public abstract non-sealed class BaseDoor implements Door {
      */
     @Override
     public <T extends CorisComponent> @Nullable T remove(Class<T> componentClass) {
-        return componentClass.cast(this.componentMap.remove(componentClass));
+        return this.components.remove(componentClass);
     }
 
     @Override

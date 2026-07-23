@@ -1,6 +1,7 @@
 package net.onelitefeather.coris.floor;
 
 import net.kyori.adventure.key.Key;
+import net.onelitefeather.coris.component.ComponentContainer;
 import net.onelitefeather.coris.component.CorisComponent;
 import net.onelitefeather.coris.room.Room;
 import net.onelitefeather.coris.shape.Shape;
@@ -17,14 +18,14 @@ import java.util.Objects;
  *
  * @param <K> the type of room that the floor can hold, typically extending from {@link Room}.
  * @author theEvilReaper
- * @version 1.1.1
+ * @version 1.1.2
  * @since 0.1.0
  */
 public final class CorisFloor<K extends Room> implements Floor<K> {
 
     private final Key identifier;
     private final Map<Key, K> data;
-    private final Map<Class<? extends CorisComponent>, CorisComponent> components;
+    private final ComponentContainer components;
     private final @Nullable Shape shape;
 
     /**
@@ -39,7 +40,7 @@ public final class CorisFloor<K extends Room> implements Floor<K> {
     ) {
         this.identifier = identifier;
         this.data = data;
-        this.components = new HashMap<>(components);
+        this.components = new ComponentContainer(components);
         this.shape = shape;
     }
 
@@ -96,7 +97,7 @@ public final class CorisFloor<K extends Room> implements Floor<K> {
      */
     @Override
     public <T extends CorisComponent> void add(Class<T> componentClass, T component) {
-        this.components.put(componentClass, component);
+        this.components.add(componentClass, component);
     }
 
     /**
@@ -104,7 +105,7 @@ public final class CorisFloor<K extends Room> implements Floor<K> {
      */
     @Override
     public <T extends CorisComponent> @Nullable T remove(Class<T> componentClass) {
-        return componentClass.cast(this.components.remove(componentClass));
+        return this.components.remove(componentClass);
     }
 
     /**
@@ -112,7 +113,7 @@ public final class CorisFloor<K extends Room> implements Floor<K> {
      */
     @Override
     public <T extends CorisComponent> boolean has(Class<T> componentClass) {
-        return this.components.containsKey(componentClass);
+        return this.components.has(componentClass);
     }
 
     /**
@@ -120,7 +121,7 @@ public final class CorisFloor<K extends Room> implements Floor<K> {
      */
     @Override
     public <T extends CorisComponent> @Nullable T get(Class<T> componentClass) {
-        return componentClass.cast(this.components.get(componentClass));
+        return this.components.get(componentClass);
     }
 
     /**
