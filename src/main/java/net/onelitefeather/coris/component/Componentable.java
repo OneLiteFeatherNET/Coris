@@ -7,13 +7,14 @@ import org.jetbrains.annotations.Nullable;
  * It allows adding, checking, retrieving, and removing components of a specific type.
  *
  * @author theEvilReaper
- * @version 1.1.0
+ * @version 1.1.01
  * @since 0.1.0
  */
 public interface Componentable {
 
     /**
-     * Adds a component to a structure.
+     * Adds a component to a structure. If a component of the same {@code componentClass}
+     * is already present, it is replaced by the new one.
      *
      * @param componentClass the class of the component to add
      * @param component      the component to add

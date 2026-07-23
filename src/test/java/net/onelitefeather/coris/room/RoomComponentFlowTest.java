@@ -32,4 +32,21 @@ class RoomComponentFlowTest {
         assertNotNull(component);
         assertEquals(importantComponent, component);
     }
+
+    @Test
+    void testRoomComponentAddOverwritesExisting() {
+        Room room = new TestRoom(Key.key("room:overwrite_test"));
+
+        TestComponent original = new TestComponent("original");
+        TestComponent replacement = new TestComponent("replacement");
+
+        room.add(TestComponent.class, original);
+        room.add(TestComponent.class, replacement);
+
+        CorisComponent retrieved = room.get(TestComponent.class);
+
+        assertNotNull(retrieved);
+        assertInstanceOf(TestComponent.class, retrieved);
+        assertEquals("replacement", ((TestComponent) retrieved).data());
+    }
 }
