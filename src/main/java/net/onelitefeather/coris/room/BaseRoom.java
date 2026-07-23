@@ -8,6 +8,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * The {@link BaseRoom} class is a basic implementation of the {@link Room} interface.
@@ -89,6 +90,17 @@ public class BaseRoom implements Room {
     @Override
     public Key identifier() {
         return identifier;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof Room room)) return false;
+        return Objects.equals(this.identifier, room.identifier());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(this.identifier);
     }
 
     /**
