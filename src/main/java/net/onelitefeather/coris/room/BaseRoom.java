@@ -14,7 +14,7 @@ import java.util.Map;
  * It provides a structure for rooms with a unique identifier, a shape, and a collection of components.
  *
  * @author theEvilReaper
- * @version 1.4.0
+ * @version 1.4.1
  * @since 0.1.0
  */
 @ApiStatus.Experimental
@@ -56,7 +56,7 @@ public class BaseRoom implements Room {
      */
     @Override
     public <T extends CorisComponent> void add(Class<T> componentClass, T component) {
-        this.components.computeIfAbsent(componentClass, k -> component);
+        this.components.put(componentClass, component);
     }
 
     /**

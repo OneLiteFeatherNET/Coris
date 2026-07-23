@@ -17,7 +17,7 @@ import java.util.Objects;
  *
  * @param <K> the type of room that the floor can hold, typically extending from {@link Room}.
  * @author theEvilReaper
- * @version 1.1.0
+ * @version 1.1.1
  * @since 0.1.0
  */
 public final class CorisFloor<K extends Room> implements Floor<K> {
@@ -80,7 +80,7 @@ public final class CorisFloor<K extends Room> implements Floor<K> {
      */
     @Override
     public void add(Key objectId, K object) {
-        this.data.computeIfAbsent(objectId, k -> object);
+        this.data.put(objectId, object);
     }
 
     /**
@@ -96,7 +96,7 @@ public final class CorisFloor<K extends Room> implements Floor<K> {
      */
     @Override
     public <T extends CorisComponent> void add(Class<T> componentClass, T component) {
-        this.components.computeIfAbsent(componentClass, k -> component);
+        this.components.put(componentClass, component);
     }
 
     /**
