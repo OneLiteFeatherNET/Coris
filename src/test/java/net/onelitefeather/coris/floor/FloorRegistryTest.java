@@ -47,7 +47,7 @@ class FloorRegistryTest {
 
     @Test
     void testRegistryRemove() {
-        Key floorKey = Key.key("coris:lobby");
+        Key floorKey = Key.key("coris", "lobby");
         Floor<Room> testFloor = new CorisFloor<>(floorKey, new CuboidShape(Vec.ZERO, new Vec(5, 5, 5)));
 
         floorRegistry.add(floorKey, testFloor);
@@ -61,9 +61,9 @@ class FloorRegistryTest {
     @Test
     void testRegistrySortingPreservation() {
         // Create floors out of level order
-        Floor<Room> floor3 = new CorisFloor<>(Key.key("coris:f3"), Map.of(), Map.of(), new CuboidShape(new Vec(0, 10, 0), new Vec(5, 15, 5)));
-        Floor<Room> floor1 = new CorisFloor<>(Key.key("coris:f1"), Map.of(), Map.of(), new CuboidShape(new Vec(0, 0, 0), new Vec(5, 5, 5)));
-        Floor<Room> floor2 = new CorisFloor<>(Key.key("coris:f2"), Map.of(), Map.of(), new CuboidShape(new Vec(0, 5, 0), new Vec(5, 10, 5)));
+        Floor<Room> floor3 = new CorisFloor<>(Key.key("coris", "f3"), Map.of(), Map.of(), new CuboidShape(new Vec(0, 10, 0), new Vec(5, 15, 5)));
+        Floor<Room> floor1 = new CorisFloor<>(Key.key("coris", "f1"), Map.of(), Map.of(), new CuboidShape(new Vec(0, 0, 0), new Vec(5, 5, 5)));
+        Floor<Room> floor2 = new CorisFloor<>(Key.key("coris", "f2"), Map.of(), Map.of(), new CuboidShape(new Vec(0, 5, 0), new Vec(5, 10, 5)));
 
         floorRegistry.add(floor3.identifier(), floor3);
         floorRegistry.add(floor1.identifier(), floor1);
@@ -81,10 +81,10 @@ class FloorRegistryTest {
 
     @Test
     void testSpatialFloorAndRoomResolution() {
-        Key floorKey = Key.key("coris:ground_floor");
+        Key floorKey = Key.key("coris", "ground_floor");
         Floor<Room> floor = new CorisFloor<>(floorKey, new CuboidShape(new Vec(0, 0, 0), new Vec(10, 5, 10)));
 
-        Room kitchen = new BaseRoom(Key.key("coris:kitchen"), new CuboidShape(new Vec(0, 0, 0), new Vec(5, 5, 5)));
+        Room kitchen = new BaseRoom(Key.key("coris", "kitchen"), new CuboidShape(new Vec(0, 0, 0), new Vec(5, 5, 5)));
         floor.add(kitchen.identifier(), kitchen);
 
         floorRegistry.add(floorKey, floor);
@@ -107,5 +107,34 @@ class FloorRegistryTest {
         Vec pointOutOfBounds = new Vec(2, 10, 2);
         assertFalse(floorRegistry.getFloorAt(pointOutOfBounds).isPresent());
         assertFalse(floorRegistry.getRoomAt(pointOutOfBounds).isPresent());
+    }
+
+    @Test
+    void testGetFloorAtSkipsFloorWithoutShape() {
+        Key noShapeKey = Key.key("coris", "no_shape_only");
+        Floor<Room> floorWithoutShape = new CorisFloor<>(noShapeKey);
+        floorRegistry.add(noShapeKey, floorWithoutShape);
+
+        Vec anyPoint = new Vec(1, 1, 1);
+
+        assertDoesNotThrow(() -> floorRegistry.getFloorAt(anyPoint));
+        assertFalse(floorRegistry.getFloorAt(anyPoint).isPresent());
+    }
+
+    @Test
+    void testGetFloorAtFindsShapedFloorAlongsideShapelessFloor() {
+        Key noShapeKey = Key.key("coris", "no_shape_mixed");
+        Floor<Room> floorWithoutShape = new CorisFloor<>(noShapeKey);
+        floorRegistry.add(noShapeKey, floorWithoutShape);
+
+        Key shapedKey = Key.key("coris", "shaped_mixed");
+        Floor<Room> shapedFloor = new CorisFloor<>(shapedKey, new CuboidShape(Vec.ZERO, new Vec(5, 5, 5)));
+        floorRegistry.add(shapedKey, shapedFloor);
+
+        Vec pointInShapedFloor = new Vec(1, 1, 1);
+
+        Optional<Floor<Room>> found = floorRegistry.getFloorAt(pointInShapedFloor);
+        assertTrue(found.isPresent());
+        assertEquals(shapedFloor, found.get());
     }
 }
