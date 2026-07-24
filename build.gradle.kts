@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "net.onelitefeather"
-version = "0.6.1"
+version = "0.6.1" //x-release-please-version
 
 java {
     toolchain.languageVersion.set(JavaLanguageVersion.of(25))
