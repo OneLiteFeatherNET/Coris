@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.7.3](https://github.com/OneLiteFeatherNET/Coris/compare/0.7.2...0.7.3) (2026-10-15)
+
+
+### Bug Fixes
+
+* **deps:** update dependency net.onelitefeather:mycelium-bom to v1.8.6 ([#88](https://github.com/OneLiteFeatherNET/Coris/issues/88)) ([d08cdd0](https://github.com/OneLiteFeatherNET/Coris/commit/d08cdd068fcb065966f1681642c1c3e6d0ec0b85))
+* **deps:** update dependency net.onelitefeather:mycelium-bom to v1.8.7 ([#91](https://github.com/OneLiteFeatherNET/Coris/issues/91)) ([06e710c](https://github.com/OneLiteFeatherNET/Coris/commit/06e710cd888839e4b2a39c1b5752a3ce56a1a85b))
+* **deps:** update dependency net.onelitefeather:mycelium-bom to v1.8.8 ([#93](https://github.com/OneLiteFeatherNET/Coris/issues/93)) ([76d1cf6](https://github.com/OneLiteFeatherNET/Coris/commit/76d1cf6b0793ddb36b53692bf16d3dd065505c97))
+* **deps:** update dependency net.onelitefeather:mycelium-bom to v1.8.9 ([#94](https://github.com/OneLiteFeatherNET/Coris/issues/94)) ([9b38109](https://github.com/OneLiteFeatherNET/Coris/commit/9b381098b4ba2fc14d48a66603a57d5c333089fd))
+
 ## [0.7.2](https://github.com/OneLiteFeatherNET/Coris/compare/0.7.1...0.7.2) (2026-08-30)
 
 
